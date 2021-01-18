@@ -1,8 +1,8 @@
-import { search, artistPicture } from './service/entryAPI.js';
+import { search } from './service/entryAPI.js';
+import {searchListeners} from './listeners/listeners.js'
 
 
 $(document).ready(function(){
-    search('musicArtist', 'hola', 20);
-    artistPicture('https://music.apple.com/us/artist/280101431');
+    searchListeners();
     
 })
