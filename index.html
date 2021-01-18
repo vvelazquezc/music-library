@@ -5,40 +5,52 @@
     <meta name="description" content="Api Music Library">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.js"
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
     <div class="wrapper-main">
         <header class="wrapper-header">
-            <div>
-                <p>Menu</p>
+            <div class="wrapper-header-menu">
+                <span class="ion-ios-navicon pull-left"><i></i></span>
             </div>
             <div class="wrapper-header-search">
-                <select name="SearchOptions" id="searchType">
+                <select name="SearchOptions" class="header-search-select" id="searchType">
                     <option value="all">All</option>
                     <option value="musicTrack">Songs</option>
                     <option value="musicArtist">Artist</option>
                     <option value="album">Album</option>
                     <option value="musicVideo">Music Video</option>
                 </select>
-                <div>
-                    <input id='search' type="text" placeholder="Search...">
-                </div>
+                <i class="fas fa-sort-down"></i>
+                <input id='search' class="header-search-input" type="text" placeholder="Search...">
             </div>
             <div>
-                <p>Favs</p>
+                <p><i class="fas fa-star icon-star"></i></p>
             </div>
         </header>
-        <section class='settings'>
-            <select name="" id="countries"></select>
-            <button id="explicit">Explit content</button>
-            <label name="" >Limit result</label><input id="limit" type="range" min="1" max="200" value="5">
+        <section class="wrapper-header-settings">
+            <ul class="ul-settings">
+                <li>
+                    <select name="" id="countries">
+                        <option value="">Countries</option>
+                    </select>
+                </li>
+                <li class="result__txt">|</li>
+                <li>
+                    <button id="explicit">Explit content</button>
+                </li>
+                <li class="result__txt">|</li>
+                <li>
+                    <label name="">Limit result</label><input id="limit" type="range" min="1" max="200" value="5">
+                </li>
+            </ul>
         </section>
         <main>
-            <p>list of songs</p>
             <div id='songsList'></div>
             <div id='artistsLists'></div>
             <div id='albumList'></div>

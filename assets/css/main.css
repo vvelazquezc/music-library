@@ -1,6 +1,11 @@
 @import './header.css';
 @import './colors.css';
-
+@import './settings.css';
+body {
+    background-color: var(--background-main);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
 .wrapper-main {
     max-width: 1200px;
     padding: 0 20px;
@@ -8,8 +13,20 @@
     display: grid;
     grid-template:
         "header"
+        "settings"
         "main"
         "footer";
+}
+hr {
+    height: 1px;
+    border: none;
+    background: radial-gradient(circle at 50% -20.71%, #ff7f85 0, #ff748c 8.33%, #ff6994 16.67%, #ff5d9c 25%, #ff52a4 33.33%, #ff47ad 41.67%, #f23cb5 50%, #e234be 58.33%, #cf32c8 66.67%, #b935d2 75%, #9f3bdb 83.33%, #7e42e5 91.67%, #514aed 100%);
+}
+h3 {
+    margin-bottom: 0;
+}
+.settings {
+    grid-area: settings;
 }
 main {
     grid-area: main;
@@ -21,9 +38,9 @@ footer {
 @media (min-width: 600px) {
 
     .wrapper-main {
-        grid-template-rows: 100px auto 100px;
         grid-template:
             "header"
+            "settings"
             "main"
             "footer"
     }
