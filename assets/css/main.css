@@ -1,0 +1,30 @@
+@import './header.css';
+@import './colors.css';
+
+.wrapper-main {
+    max-width: 1200px;
+    padding: 0 20px;
+    margin: 0 auto;
+    display: grid;
+    grid-template:
+        "header"
+        "main"
+        "footer";
+}
+main {
+    grid-area: main;
+}
+footer {
+    grid-area: footer;
+}
+
+@media (min-width: 600px) {
+
+    .wrapper-main {
+        grid-template-rows: 100px auto 100px;
+        grid-template:
+            "header"
+            "main"
+            "footer"
+    }
+}
