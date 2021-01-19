@@ -50,7 +50,7 @@ function songsListener() {
         }
         
         myAudio.play();
-    }else{
+    }else if ($(event.target).hasClass("fa-pause")){
         $(event.target).addClass("fa-play");
         $(event.target).removeClass("fa-pause");
         myAudio.pause();

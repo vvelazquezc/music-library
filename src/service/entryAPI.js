@@ -1,6 +1,13 @@
 import { API_BASE_URL } from './config.js'
 import { printObjects, printCountries } from '../renders/render.js'
 
+let data={
+    musicTrack:[],
+    musicArtis:[],
+    album:[],
+    musicVideo: []
+}
+
 function getById(param) {
     return $.ajax(`${API_BASE_URL}/lookup?id=${param}`,{
         dataType: 'jsonp',
@@ -23,6 +30,7 @@ function search(entity, param, limit, explicit, country) {
         crossDomain: true,
         success: function (data,status,xhr) {
             printObjects(entity, data.results);
+            data[entity]=data.results;
         },
         error: function (jqXhr, textStatus, errorMessage) {
             console.warn(errorMessage)

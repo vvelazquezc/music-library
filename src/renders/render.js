@@ -17,7 +17,7 @@ function printObjects(type, data){
     }
 }
 
-function printSong(song){
+function printSong(song, index){
     //const time=(song.trackTimeMillis-(song.trackTimeMillis%60000))/60000+':'+(song.trackTimeMillis-(song.trackTimeMillis%1000))/1000%60;
     const $song = ` <article class="song" style="background: url('${song.artworkUrl100}')no-repeat; background-size: cover;" >
     <div class="background grid-song">
@@ -25,7 +25,7 @@ function printSong(song){
             <button value="${song.previewUrl}" class="fas fa-play"></button>
         </div>
         <div class="item-info">
-            <button><h3>${song.trackName}</h3></button>
+            <button value="${index}"><h3>${song.trackName}</h3></button>
             <button><p class="text">${song.artistName}</p></button>
         </div>
         <button class="fas fa-star fav-button "></button>
@@ -37,7 +37,7 @@ function printSong(song){
 }
 
 function printArtist(artist){
-    const $artist = ` <button class="artist" >
+    const $artist = ` <button class="artist" value="${index}>
          <h3>${artist.artistName}</h3>
         <p class="text">${artist.primaryGenreName}</p>
         <button class="fas fa-star fav-button "></button>
@@ -46,7 +46,7 @@ function printArtist(artist){
 }
 
 function printAlbum(album){
-    const $album = ` <button class="album" style="background: url('${album.artworkUrl100}')no-repeat; background-size: cover;">
+    const $album = ` <button value="${index} class="album" style="background: url('${album.artworkUrl100}')no-repeat; background-size: cover;">
     <div class="background">
         <h3>${album.collectionName}</h3>
         <p class="text">${album.artistName}</p>
@@ -57,7 +57,7 @@ function printAlbum(album){
 }
 
 function printVideo(video){
-    const $video = `<button class="video" style="background: url('${video.artworkUrl100}')no-repeat; background-size: cover;">
+    const $video = `<button value="${index} class="video" style="background: url('${video.artworkUrl100}')no-repeat; background-size: cover;">
     <div class="background">
         <h3>${video.trackName}</h3>
         <p class="text">${video.artistName}</p>
@@ -71,7 +71,7 @@ function printAllFromType(data, title, listQuerySelector, printFunction){
     $(listQuerySelector).text('');
     printTitle(title, listQuerySelector);
     $(data).each(index=>{
-        printFunction(data[index]);
+        printFunction(data[index], index);
     });
 }
 
