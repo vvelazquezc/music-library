@@ -1,17 +1,21 @@
 
 ul {
     margin: 0;
+    padding: 0;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .ul-settings li {
     display: inline-block;
-    padding: 0 10px;
     text-decoration: none;
-    transition: all ease 0.5s;
 }
 .ul-settings label {
     font-size: 12px;
     font-weight: 300;
     padding-right: 10px;
+    margin-left: 10px;
 }
 .ul-settings button {
     margin-top: 10px;
@@ -20,24 +24,24 @@ ul {
     border-radius: 10px;
     border: #52cffe 1px solid;
     padding: 10px;
-    margin-right: 10px;
+    margin: 0 10px;
     outline: none;
 }
 .result__txt {
     color: #858585;
+    padding: 10px;
     font-size: 14px;
     font-weight: 300;
 }
 input[type=range] {
     -webkit-appearance: none;
-    margin: 10px 0;
     width: 100%;
 }
 input[type=range]:focus {
     outline: none;
 }
 input[type=range]{
-    width: 150px;
+    width: 100px;
     height: 3px;
     cursor: pointer;
     box-shadow: 0px 0px 0px #fff, 0px 0px 0px #fff;
