@@ -1,0 +1,51 @@
+.modal-item {
+    position:fixed;
+    top:0;
+    left: 0;
+    width:100%;
+    height: 100vh;
+    background-color: #191a2daf;
+}
+.modal-item-song{
+    max-width: 400px;
+    position: fixed;
+    margin: 0 auto;
+    top: 5%;
+    left: 0%;
+    right: 0%;
+    padding: 0 20px 20px 20px;
+    background-color: var(--background-active);
+    border-radius: 20px;
+    z-index: 100;
+    box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
+}
+.button__close {
+    margin-left: 92%;
+    border: none;
+    padding: 20px;
+    font-size: large;
+    background: transparent;
+    color: white;
+}
+.modal-song .modal-song-cover img{
+    width: 100%;
+    padding-bottom: 10px;
+}
+@supports(object-fit: cover){
+    .modal-song__img img{
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+}
+.modal-song-info {
+    display: flex;
+    justify-content: space-between;
+}
+.modal-item-song h3 {
+    font-size: 14px;
+}
+.modal-item-song p {
+    font-size: 12px;
+    
+}
