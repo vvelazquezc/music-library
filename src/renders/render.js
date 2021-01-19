@@ -28,7 +28,10 @@ function printSong(song){
             <button><h3>${song.trackName}</h3></button>
             <button><p class="text">${song.artistName}</p></button>
         </div>
+        <button class="fas fa-star fav-button "></button>
+        
     </div>
+    
 </article>`;
     $('#songsList').append($song);
 }
@@ -37,6 +40,7 @@ function printArtist(artist){
     const $artist = ` <button class="artist" >
          <h3>${artist.artistName}</h3>
         <p class="text">${artist.primaryGenreName}</p>
+        <button class="fas fa-star fav-button "></button>
     </button>`;
     $('#artistsLists').append($artist);
 }
@@ -46,6 +50,7 @@ function printAlbum(album){
     <div class="background">
         <h3>${album.collectionName}</h3>
         <p class="text">${album.artistName}</p>
+        <a class="fas fa-star fav-button "></a>
    <div>
 </button>`;
     $('#albumList').append($album);
@@ -56,6 +61,7 @@ function printVideo(video){
     <div class="background">
         <h3>${video.trackName}</h3>
         <p class="text">${video.artistName}</p>
+        <a class="fas fa-star fav-button "></a>
    <div>
 </button>`;
     $('#videoList').append($video);

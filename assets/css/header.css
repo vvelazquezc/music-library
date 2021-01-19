@@ -36,6 +36,9 @@
 }
 .icon-star {
     color: white;
+    background-color: #0000;
+    border: none;
+    font-size: x-large;
 }
 .icon-star:hover {
     color: white;
