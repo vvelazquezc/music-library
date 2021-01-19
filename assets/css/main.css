@@ -1,8 +1,11 @@
+
+@import './general.css';
 @import './header.css';
 @import './colors.css';
 @import './settings.css';
 @import './items.css';
 @import './mediaQuery.css';
+@import './modal.css';
 
 body {
     background-color: var(--background-main);
@@ -27,6 +30,7 @@ hr {
 }
 .text {
     color: #FFFA;
+    font-weight: 300;
 }
 .settings {
     grid-area: settings;
