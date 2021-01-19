@@ -18,7 +18,15 @@ function printObjects(type, data){
 }
 
 function printSong(song){
-    const $song = `<p>${song.trackName}</p>`;
+    const time=(song.trackTimeMillis-(song.trackTimeMillis%60000))/60000+':'+(song.trackTimeMillis-(song.trackTimeMillis%1000))/1000%60;
+    const $song = `<article class="song">
+    <button style="background-image: url('${song.artworkUrl100}');" class="fas fa-play song--button"></button>
+    <div>
+         <button>${song.trackName}</button>
+        <button>${song.artistName}</button>
+    </div>
+    <p>${time}</p>
+</article>`;
     $('#songsList').append($song);
 }
 
