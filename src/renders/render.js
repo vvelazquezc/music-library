@@ -22,7 +22,7 @@ function printSong(song){
     const $song = ` <article class="song" style="background: url('${song.artworkUrl100}')no-repeat; background-size: cover;" >
     <div class="background grid-song">
         <div class="item-cover">
-            <button value='${song.previewUrl}'  class="fas fa-play"></button>
+            <button value="${song.previewUrl}" class="fas fa-play"></button>
         </div>
         <div class="item-info">
             <button><h3>${song.trackName}</h3></button>
@@ -80,4 +80,17 @@ function printTitle(title, nodeQuery){
     $(nodeQuery).append($title);
 }
 
-export {printObjects};
+function printCountry(name, code){
+    const $contry=`<option value="${code}">${name}</option>`;
+    $('#countries').append($contry);
+}
+
+function printCountries(data){
+    $(data).each(index=>{
+        printCountry(data[index].nameCurrentValue, data[index].a2);
+    });
+
+    $('#countries').val('ES');
+}
+
+export {printObjects, printCountries};

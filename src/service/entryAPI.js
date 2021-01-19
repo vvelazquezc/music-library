@@ -1,5 +1,5 @@
 import { API_BASE_URL } from './config.js'
-import { printObjects } from '../renders/render.js'
+import { printObjects, printCountries } from '../renders/render.js'
 
 function getById(param) {
     return $.ajax(`${API_BASE_URL}/lookup?id=${param}`,{
@@ -15,10 +15,8 @@ function getById(param) {
 }
 
 function search(entity, param, limit, explicit, country) {
-    let url = `${API_BASE_URL}/search?entity=${entity}&term=${param}&explicit=${explicit}&limit=${limit}`;
-    if (country != null) {
-        url+=`&country=${country}`;
-    }
+    let url = `${API_BASE_URL}/search?entity=${entity}&term=${param}&country=${country}&explicit=${explicit}&limit=${limit}`;
+    console.log(url)
     return $.ajax(url,{
         dataType: 'jsonp',
         mode:'cors',
@@ -28,8 +26,22 @@ function search(entity, param, limit, explicit, country) {
         },
         error: function (jqXhr, textStatus, errorMessage) {
             console.warn(errorMessage)
+            console.log(url)
         }
     });
 }
 
-export { getById, search }
+function getCountries(){
+    $.ajax(' https://www.liferay.com/api/jsonws/country/get-countries/',{
+        mode:'cors',
+        crossDomain: true,
+        success: function (data,status,xhr) {
+            printCountries(data);
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+            console.log(textStatus);
+        }
+    })
+}
+
+export { getById, search, getCountries }

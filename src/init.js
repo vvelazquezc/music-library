@@ -1,8 +1,10 @@
-import { search } from './service/entryAPI.js';
-import {searchListeners} from './listeners/listeners.js'
+import { search, getCountries } from './service/entryAPI.js';
+import { searchListeners, songsListener } from './listeners/listeners.js'
 
 
 $(document).ready(function(){
+    getCountries();
     searchListeners();
+    songsListener();
     
 })
