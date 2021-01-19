@@ -36,7 +36,7 @@ function printSong(song, index){
     $('#songsList').append($song);
 }
 
-function printArtist(artist){
+function printArtist(artist, index){
     const $artist = ` <button class="artist" value="${index}>
          <h3>${artist.artistName}</h3>
         <p class="text">${artist.primaryGenreName}</p>
@@ -45,7 +45,7 @@ function printArtist(artist){
     $('#artistsLists').append($artist);
 }
 
-function printAlbum(album){
+function printAlbum(album, index){
     const $album = ` <button value="${index} class="album" style="background: url('${album.artworkUrl100}')no-repeat; background-size: cover;">
     <div class="background">
         <h3>${album.collectionName}</h3>
@@ -56,7 +56,7 @@ function printAlbum(album){
     $('#albumList').append($album);
 }
 
-function printVideo(video){
+function printVideo(video, index){
     const $video = `<button value="${index} class="video" style="background: url('${video.artworkUrl100}')no-repeat; background-size: cover;">
     <div class="background">
         <h3>${video.trackName}</h3>
