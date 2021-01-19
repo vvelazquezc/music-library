@@ -1,0 +1,32 @@
+@media (min-width: 600px) {
+
+    .wrapper-main {
+        grid-template:
+            "header"
+            "settings"
+            "main"
+            "footer"
+    }
+    .song {
+        display: grid;
+        width: 33%;
+        justify-content: center;
+        grid-template:
+            "cover"
+            "info"
+            "time"
+        ;
+    }
+    .item-cover {
+        margin: 0 auto;
+    }
+    .item-info {
+        padding-top: 10px;
+    }
+    .item-time {
+        margin: 0;
+        text-align: center;
+    }
+}
+
+
