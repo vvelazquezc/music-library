@@ -23,7 +23,7 @@ body {
 hr {
     height: 1px;
     border: none;
-    background: radial-gradient(circle at 50% -20.71%, #ff7f85 0, #ff748c 8.33%, #ff6994 16.67%, #ff5d9c 25%, #ff52a4 33.33%, #ff47ad 41.67%, #f23cb5 50%, #e234be 58.33%, #cf32c8 66.67%, #b935d2 75%, #9f3bdb 83.33%, #7e42e5 91.67%, #514aed 100%);
+    background: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
 }
 .text {
     color: var(--color-main);
@@ -33,6 +33,11 @@ hr {
 }
 main {
     grid-area: main;
+}
+.wrapper-main-list {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
 }
 footer {
     grid-area: footer;

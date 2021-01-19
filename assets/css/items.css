@@ -17,13 +17,14 @@
 }
 .song {
     display: grid;
+    width: 100%;
     grid-template:
         "cover"
         "info"
         "time" /
         50px auto 50px
     ;
-    margin: 0;
+    margin: 1%;
     align-items: center;
     background-color: var(--background-active);
     padding: 10px;

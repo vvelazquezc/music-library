@@ -7,9 +7,12 @@
             "main"
             "footer"
     }
+    .wrapper-main-list {
+        width: 100%;
+    }
     .song {
         display: grid;
-        width: 33%;
+        width: 29%;
         justify-content: center;
         grid-template:
             "cover"
@@ -19,6 +22,8 @@
     }
     .item-cover {
         margin: 0 auto;
+        width: 125px;
+        height: 125px;
     }
     .item-info {
         padding-top: 10px;
