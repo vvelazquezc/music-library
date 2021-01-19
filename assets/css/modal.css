@@ -1,4 +1,4 @@
-.modal-item {
+.modal-item-background {
     position:fixed;
     top:0;
     left: 0;
@@ -10,7 +10,7 @@
     max-width: 400px;
     position: fixed;
     margin: 0 auto;
-    top: 5%;
+    top: 20%;
     left: 0%;
     right: 0%;
     padding: 0 20px 20px 20px;
@@ -27,16 +27,15 @@
     background: transparent;
     color: white;
 }
-.modal-song .modal-song-cover img{
+.modal-song .modal-song-cover{
     width: 100%;
+    height: 200px;
     padding-bottom: 10px;
 }
-@supports(object-fit: cover){
-    .modal-song__img img{
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
-    }
+.modal-song .modal-song-cover button{
+    width: 100%;
+    height: 200px;
+    padding-bottom: 10px;
 }
 .modal-song-info {
     display: flex;
