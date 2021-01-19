@@ -35,6 +35,22 @@ footer {
     grid-area: footer;
 }
 
+.song{
+    display:flex;
+    padding: 1em;
+    width:100%;
+    background-color: #f23cb5;
+}
+
+.song--button{
+    background-size: contain;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    font-size: xx-large;
+    border:none;
+}
+
 @media (min-width: 600px) {
 
     .wrapper-main {
