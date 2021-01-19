@@ -1,7 +1,7 @@
 import { search } from "../service/entryAPI.js";
 
 let entity = 'all';
-let limit = 5;
+let limit = 6;
 let term='';
 let explicit = 'yes';
 let country = null;
@@ -37,10 +37,10 @@ function searchIfInput(){
     if(term!=''){
         showHideLists(entity);
         if(entity==='all'){
-            search('musicTrack', term, '5', explicit, country);
-            search('musicArtist', term, '5', explicit, country);
-            search('album', term, '5', explicit, country);
-            search('musicVideo', term, '5', explicit, country);
+            search('musicTrack', term, '6', explicit, country);
+            search('musicArtist', term, '6', explicit, country);
+            search('album', term, '6', explicit, country);
+            search('musicVideo', term, '6', explicit, country);
         }else{
             search(entity, term, limit, explicit, country);
         }

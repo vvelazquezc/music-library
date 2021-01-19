@@ -26,18 +26,22 @@ hr {
     background: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
 }
 .text {
-    color: var(--color-main);
+    color: #FFFA;
 }
 .settings {
     grid-area: settings;
 }
 main {
     grid-area: main;
+    width:100%;
 }
 .wrapper-main-list {
     display: flex;
     flex-flow: row wrap;
     width: 100%;
+}
+.wrapper-main-list-title{
+    width:100%;
 }
 footer {
     grid-area: footer;
