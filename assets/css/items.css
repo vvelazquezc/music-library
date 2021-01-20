@@ -61,9 +61,9 @@
 }
 .fav-button{
     position: absolute;
-    right: 1em;
-    top: 1em;
-    font-size: large;
+    right: 0.5em;
+    top: 0.5em;
+    font-size: x-large;
     background-color: #0000;
     border: none;
     color: white;

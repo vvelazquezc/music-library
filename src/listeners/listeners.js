@@ -1,22 +1,24 @@
 import { search } from "../service/entryAPI.js";
+import { playSongMain, pauseSongMain, changePlayButton } from "./music.js";
+import { addToFavorites, removeFromFavorites } from '../service/favorites.js'
 
 let entity = "all";
 let limit = 6;
 let term = "";
 let explicit = "yes";
 let country = "ES";
-let count = 0;
-let actualSongId=null;
-let myAudio=null;
+
 
 function searchListeners() {
   $("#searchType").on("change", function (event) {
     entity = $(this).val();
+    pauseSongMain();
     searchIfInput();
   });
 
   $("#search").on("change", function () {
     term = $(this).val();
+    pauseSongMain();
     searchIfInput();
   });
 
@@ -26,7 +28,7 @@ function searchListeners() {
     } else {
       explicit = "yes";
     }
-    console.log(explicit);
+    pauseSongMain();
     searchIfInput();
   });
 
@@ -36,7 +38,7 @@ function searchListeners() {
   });
   $("#countries").on("change", function () {
     country = $(this).val();
-    console.log(country);
+    pauseSongMain();
     searchIfInput();
   });
 }
@@ -48,38 +50,36 @@ function songsListener() {
         playSongMain(event.target);
     }else if ($(event.target).hasClass("fa-pause")){
         changePlayButton(true, event.target);
-        myAudio.pause();
+        pauseSongMain();
+    }else if($(event.target).hasClass("fav-button")){
+      addRemoveFromFavorites(event.target)
+
+    }else if($(event.target).hasClass("title-song")){
+      console.log("hola");
     }
   });
 }
 
-function playSongMain(target){
-    if(myAudio!=new Audio(target.value)){
-        if(myAudio!=null){
-            myAudio.pause();
-        }
-        myAudio = new Audio(target.value);
-        $(myAudio).on('ended', function() {
-            changePlayButton(true, target);
-         });
-    }
-    actualSongId=target.id;
-    myAudio.play();
+function changeFavButton(isFavorite, target){
+  if(isFavorite){
+    $(target).addClass('fas');
+    $(target).removeClass('far');
+  }else{
+    $(target).addClass('far');
+    $(target).removeClass('fas');
+  }
 }
 
-function changePlayButton(isPlaying, target){
-    if(isPlaying){
-        $(target).addClass("fa-play");
-        $(target).removeClass("fa-pause");
-    }else{
-        $(target).removeClass("fa-play");
-        $(target).addClass("fa-pause");
-        if(actualSongId!=null && actualSongId!=target.id){
-            $(`#${actualSongId}`).addClass("fa-play");
-            
-        }
-    }
+function addRemoveFromFavorites(target){
+  if($(target).hasClass('far')){
+    changeFavButton(true, target);
+    addToFavorites($(target).data('type'), {}, '12345');
+  }else{
+    changeFavButton(false, target);
+    removeFromFavorites($(target).data('type'), '12345');
+  }
 }
+
 
 function searchIfInput() {
   if (term != "") {
@@ -143,4 +143,4 @@ function showAllLists() {
   showList("#videoList");
 }
 
-export {searchListeners, songsListener};
+export {searchListeners, songsListener };
