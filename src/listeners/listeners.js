@@ -1,6 +1,8 @@
 import { search, currentObjects } from "../service/entryAPI.js";
 import { songModal } from '../renders/modalSong.js'
 import { artistModal } from '../renders/modalArtist.js'
+import { albumModal } from '../renders/modalAlbum.js'
+import { videoModal } from '../renders/modalMVideo.js'
 
 let entity = "all";
 let limit = 6;
@@ -53,6 +55,14 @@ function openArtistModal(value) {
   const artist = currentObjects.musicArtist[value]
   artistModal.render($container, artist)
 }
+function openAlbumModal(value) {
+  const artist = currentObjects.album[value]
+  albumModal.render($container, artist)
+}
+function openVideoModal(value) {
+  const musicVideo = currentObjects.musicVideo[value]
+  videoModal.render($container, musicVideo)
+}
 
 function songsListener() {
   $("#songsList").on("click", function (event) {
@@ -79,7 +89,29 @@ function artistListener() {
       const value = $(event.target).val()
       openArtistModal(value)
     }
-      // openSongModal(value)
+  })
+}
+function albumListener() {
+  $("#albumList").on("click", function (event) {
+    if ($(event.target).parent().hasClass("album")) {
+      const value = $(event.target).parent().val()
+      openAlbumModal(value)
+    } else if ($(event.target).hasClass("album")) {
+      const value = $(event.target).val()
+      openAlbumModal(value)
+    }
+  })
+}
+
+function videoListener() {
+  $("#videoList").on("click", function (event) {
+    if ($(event.target).parent().hasClass("video")) {
+      const value = $(event.target).parent().val()
+      openVideoModal(value)
+    } else if ($(event.target).hasClass("video")) {
+      const value = $(event.target).val()
+      openVideoModal(value)
+    }
   })
 }
 
@@ -173,4 +205,4 @@ function showAllLists() {
   showList("#videoList");
 }
 
-export {searchListeners, songsListener, openSongModal, artistListener };
+export {searchListeners, songsListener, openSongModal, artistListener, albumListener, videoListener };
