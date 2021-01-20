@@ -2,18 +2,18 @@ export const artistModal = {
     name: 'artistModal',
     template: (artist) => 
     `
-    <div class="modal-item-song">
+    <div class="modal-item">
         <button class="far fa-times-circle button__close">
         </button>
         <div class="modal-artist">
-            <div class="modal-artist-cover">
-            <img src="" alt="">
+            <div class="modal-img">
+                <img src="https://image.freepik.com/free-vector/glitch-error-404-page_23-2148105404.jpg" alt="error404">
             </div>
-            <div class="modal-artist-info">
+            <div class="modal-info">
                 <h3 class="modal-artist">${artist.artistName}</h3>
             </div>
-            <p class="text modal-genre">${artist.artistType}</p>
-            <a href="${artist.artistLinkUrl}" class="modal-link">Link in Itunes</a>
+            <p class="text modal-text modal-genre">${artist.primaryGenreName}</p>
+            <p class="modal-link"><a href="${artist.artistLinkUrl}" class="modal-link">Link in Itunes</a></p>
         </div>
     </div>
     <div class="modal-item-background"></div>
