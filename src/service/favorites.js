@@ -1,6 +1,6 @@
 let favorites={
     musicTrack:{},
-    musicArtis:{},
+    musicArtist:{},
     album:{},
     musicVideo: {}
 };

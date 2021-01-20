@@ -6,11 +6,13 @@
 @import './items.css';
 @import './mediaQuery.css';
 @import './modal.css';
+@import './favorites.css';
 
 body {
     background-color: var(--background-main);
     color: white;
     font-family: 'Poppins', sans-serif;
+    overflow: hidden;
 }
 .wrapper-main {
     max-width: 1200px;

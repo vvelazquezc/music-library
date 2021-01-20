@@ -45,6 +45,21 @@ function searchListeners() {
     pauseSongMain();
     searchIfInput();
   });
+
+  $("#favListButton").on("click", function () {
+    showFavorites();
+  });
+  
+}
+
+function showFavorites(){
+  $('#favorites').removeClass('hide');
+  $('#closeFavoritesButon').on('click', hideFavorites);
+}
+
+function hideFavorites(){
+  $('#favorites').addClass('hide');
+  $('#closeFavoritesButon').off('click', hideFavorites);
 }
 
 function openSongModal(value) {
@@ -72,6 +87,7 @@ function songsListener($container) {
     }
   });
 }
+
 function artistListener($container) {
   console.log('epa!');
   // $("#artistsLists").on("click", function (event) {
@@ -92,13 +108,41 @@ function changeFavButton(isFavorite, target){
   }
 }
 function addRemoveFromFavorites(target){
+  let type = $(target).data('type');
+  let id=getId(target);
+
   if($(target).hasClass('far')){
+    let position=$(target).val();
     changeFavButton(true, target);
-    addToFavorites($(target).data('type'), {}, '12345');
+    addToFavorites( type , currentObjects[type][position] , id);
   }else{
     changeFavButton(false, target);
-    removeFromFavorites($(target).data('type'), '12345');
+    removeFromFavorites( type , id);
   }
+}
+
+function getId(target){
+  let type = $(target).data('type');
+  let position=$(target).val();
+  let id;
+  switch(type){
+    case 'musicTrack':
+      id=currentObjects[type][position].trackId;
+      break;
+    case 'musicArtist':
+      id=currentObjects[type][position].artistId;
+      break;
+    case 'album':
+      id=currentObjects[type][position].collectionId;
+      break;
+    case 'musicVideo':
+      id=currentObjects[type][position].trackId;
+      break;
+    default:
+      id=0;
+      break
+  }
+  return id;
 }
 
 
