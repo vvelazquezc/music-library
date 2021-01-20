@@ -25,11 +25,10 @@ function printSong(song, index){
             <button id="${song.trackId}" value="${song.previewUrl}" class="fas fa-play"></button>
         </div>
         <div class="item-info">
-            <button value="${index}"><h3>${song.trackName}</h3></button>
+            <button class="title-song" value="${index}">${song.trackName}</button>
             <button><p class="text">${song.artistName}</p></button>
         </div>
         <button class="fas fa-star fav-button "></button>
-        
     </div>
     
 </article>`;
@@ -37,7 +36,7 @@ function printSong(song, index){
 }
 
 function printArtist(artist, index){
-    const $artist = ` <button class="artist" value="${index}">
+    const $artist = ` <button class="artist title-artist" value="${index}">
          <h3>${artist.artistName}</h3>
         <p class="text">${artist.primaryGenreName}</p>
         <button class="fas fa-star fav-button "></button>

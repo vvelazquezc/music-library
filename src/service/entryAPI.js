@@ -1,7 +1,7 @@
 import { API_BASE_URL } from './config.js'
 import { printObjects, printCountries } from '../renders/render.js'
 
-let data={
+let currentObjects = {
     musicTrack:[],
     musicArtis:[],
     album:[],
@@ -30,7 +30,7 @@ function search(entity, param, limit, explicit, country) {
         crossDomain: true,
         success: function (data,status,xhr) {
             printObjects(entity, data.results);
-            data[entity]=data.results;
+            currentObjects[entity] = data.results;
         },
         error: function (jqXhr, textStatus, errorMessage) {
             console.warn(errorMessage)
@@ -52,4 +52,4 @@ function getCountries(){
     })
 }
 
-export { getById, search, getCountries }
+export { getById, search, getCountries, currentObjects }

@@ -1,4 +1,6 @@
-import { search } from "../service/entryAPI.js";
+import { search, currentObjects } from "../service/entryAPI.js";
+import { songModal } from '../renders/modalSong.js'
+import { artistModal } from '../renders/modalArtist.js'
 
 let entity = "all";
 let limit = 6;
@@ -8,6 +10,8 @@ let country = "ES";
 let count = 0;
 let actualSongId=null;
 let myAudio=null;
+
+const $container = $('.wrapper-main')
 
 function searchListeners() {
   $("#searchType").on("change", function (event) {
@@ -41,7 +45,16 @@ function searchListeners() {
   });
 }
 
-function songsListener() {
+function openSongModal(value) {
+  const song = currentObjects.musicTrack[value]
+  songModal.render($container, song)
+}
+function openArtistModal(value) {
+  const song = currentObjects.musicTrack[value]
+  artistModal.render($container, song)
+}
+
+function songsListener($container) {
   $("#songsList").on("click", function (event) {
     if ($(event.target).hasClass("fa-play")) {
         changePlayButton(false, event.target);
@@ -49,8 +62,21 @@ function songsListener() {
     }else if ($(event.target).hasClass("fa-pause")){
         changePlayButton(true, event.target);
         myAudio.pause();
+    } else if ($(event.target).hasClass("title-song")) {
+      const value = $(event.target).val()
+      openSongModal(value)
     }
   });
+}
+
+function artistListener($container) {
+  console.log('epa!');
+  // $("#artistsLists").on("click", function (event) {
+  //   if ($(event.target).hasClass("title-artist")) {
+  //     const value = $(event.target).val()
+  //     openSongModal(value)
+  //   }
+  // });
 }
 
 function playSongMain(target){
@@ -143,4 +169,4 @@ function showAllLists() {
   showList("#videoList");
 }
 
-export {searchListeners, songsListener};
+export {searchListeners, songsListener, openSongModal, artistListener };
