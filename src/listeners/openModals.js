@@ -7,7 +7,6 @@ const $container = $('.wrapper-main')
 
 function openSongModal(value, object) {
     const song = object.musicTrack[value]
-    console.log(object.musicTrack);
     songModal.render($container, song)
   }
   function openArtistModal(value, object) {

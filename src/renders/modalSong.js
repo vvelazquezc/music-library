@@ -1,3 +1,5 @@
+import { getById } from '../service/entryAPI.js'
+
 export const songModal = {
     name: 'songModal',
     template: (song) => 
@@ -13,7 +15,7 @@ export const songModal = {
                     <h3 class="modal-song modal-title1">${song.trackName}</h3>
                     <span class="modal-price">${song.trackPrice}$</span>
                 </div>
-                <h4 class="modal-artist">${song.artistName}</h4>
+                <h4 class="modal-artist" data-index="${song.artistId}">${song.artistName}</h4>
                 <p class="text modal-album modal-text">${song.collectionName} - <span class="modal-date">${new Date(song.releaseDate).getFullYear()}</span></p>
                 <p class="modal-link"><a href="${song.trackViewUrl}" class="modal-link">Link in Itunes</a></p>
             </div>
@@ -23,18 +25,21 @@ export const songModal = {
     render: function ($container, song) {
         const html = this.template(song)
         const $modal = $(html)
-        console.log('llego hasta aqui');
 
         const $closeModal = $modal.find('.button__close')
         const $closeBackground = $modal.find('.modal-item-background')
-        const $songModal = $modal.find('.modal-song')
-        const $albumModal = $modal.find('.modal-album')
-        const $linkModal = $modal.find('.modal-link')
+        const $artistModal = $modal.find('.modal-artist')
 
         $closeModal.on('click', () => {
             $modal.remove()
         })
         $closeBackground.on('click', () => {
+            $modal.remove()
+        })
+
+        $artistModal.on('click', (e) => {
+            const idArtist = $(e.target).data('index')
+            getById(idArtist)
             $modal.remove()
         })
 
