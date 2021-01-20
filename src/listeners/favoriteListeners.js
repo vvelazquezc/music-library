@@ -32,7 +32,7 @@ function favoriteListener() {
     } else if ($(target).hasClass("title-song")) {
       const value = $(target).val();
       openSongModal(value, favorites);
-    } else if ($(target).hasClass("title-song")) {
+    } else if ($(target).hasClass("title-artist")) {
       const value = $(target).val();
       getById(value);
     } else if ($(event.target).parent().hasClass("album")) {

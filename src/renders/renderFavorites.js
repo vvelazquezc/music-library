@@ -50,7 +50,7 @@ function printSongFavorites(song){
         </div>
         <div class="item-info">
             <button class="title-song clickable" value="${song.trackId}">${song.trackName}</button>
-            <button class="text clickable" value="${song.artistId}">${song.artistName}</button>
+            <button class="title-artist clickable" value="${song.artistId}">${song.artistName}</button>
         </div>
         <button data-type="musicTrack" data-index="${song.trackId}" class="${starType} fa-star fav-button clickable"></button>
     </div>
