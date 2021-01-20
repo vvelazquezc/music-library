@@ -7,11 +7,11 @@ const $container = $('.wrapper-main')
 
 function openSongModal(value, object) {
     const song = object.musicTrack[value]
-    console.log(object.musicTrack);
     songModal.render($container, song)
   }
   function openArtistModal(value, object) {
     const artist = object.musicArtist[value]
+    console.log(value);
     artistModal.render($container, artist)
   }
   function openAlbumModal(value, object) {

@@ -29,13 +29,13 @@ function printSong(song, index){
     const $song = ` <article class="song" style="background: url('${song.artworkUrl100}')no-repeat; background-size: cover;" >
     <div class="background grid-song">
         <div class="item-cover">
-            <button id="${song.trackId}" value="${song.previewUrl}" class="fas fa-play"></button>
+            <button id="${song.trackId}" value="${song.previewUrl}" class="fas fa-play clickable"></button>
         </div>
         <div class="item-info">
-            <button value="${index}" class="title-song">${song.trackName}</button>
-            <button class="text">${song.artistName}</button>
+            <button value="${index}" class="title-song clickable">${song.trackName}</button>
+            <button class="text clickable">${song.artistName}</button>
         </div>
-        <button data-index="${index}" data-type="musicTrack" class="${starType} fa-star fav-button "></button>
+        <button data-index="${index}" data-type="musicTrack" class="${starType} fa-star fav-button clickable"></button>
         
     </div>
     
@@ -49,10 +49,10 @@ function printArtist(artist, index){
     if(favorites.musicArtist[artist.artistId]!=null){
         starType='fas';
     }
-    const $artist = ` <button class="artist title-artist" value="${index}">
+    const $artist = ` <button class="artist title-artist clickable" value="${index}">
          <h3>${artist.artistName}</h3>
         <p class="text">${artist.primaryGenreName}</p>
-        <a data-type="musicArtist" data-index="${index}" class=" ${starType} fa-star fav-button "></a>
+        <a data-type="musicArtist" data-index="${index}" class=" ${starType} fa-star fav-button clickable"></a>
     </button>`;
     $('#artistsLists').append($artist);
 }
@@ -63,11 +63,11 @@ function printAlbum(album, index){
     if(favorites.album[album.collectionId]!=null){
         starType='fas';
     }
-    const $album = ` <button value="${index}" class="album" style="background: url('${album.artworkUrl100}')no-repeat; background-size: cover;">
+    const $album = ` <button value="${index}" class="album clickable" style="background: url('${album.artworkUrl100}')no-repeat; background-size: cover;">
     <div class="background">
         <h3>${album.collectionName}</h3>
         <p class="text">${album.artistName}</p>
-        <a data-type="album" data-index="${index}" class="${starType} fa-star fav-button "></a>
+        <a data-type="album" data-index="${index}" class="${starType} fa-star fav-button clickable"></a>
    <div>
 </button>`;
     $('#albumList').append($album);
@@ -79,11 +79,11 @@ function printVideo(video, index){
     if(favorites.musicVideo[video.trackId]!=null){
         starType='fas';
     }
-    const $video = `<button value="${index}" class="video" style="background: url('${video.artworkUrl100}')no-repeat; background-size: cover;">
+    const $video = `<button value="${index}" class="video clickable" style="background: url('${video.artworkUrl100}')no-repeat; background-size: cover;">
     <div class="background">
         <h3>${video.trackName}</h3>
         <p class="text">${video.artistName}</p>
-        <a data-type="musicVideo" data-index="${index}" class="${starType} fa-star fav-button "></a>
+        <a data-type="musicVideo" data-index="${index}" class="${starType} fa-star fav-button clickable"></a>
    <div>
 </button>`;
     $('#videoList').append($video);
@@ -103,7 +103,7 @@ function printTitle(title, nodeQuery){
 }
 
 function printCountry(name, code){
-    const $contry=`<option value="${code}">${name}</option>`;
+    const $contry=`<option value="${code}" class='clickable'>${name}</option>`;
     $('#countries').append($contry);
 }
 
@@ -111,7 +111,6 @@ function printCountries(data){
     $(data).each(index=>{
         printCountry(data[index].nameCurrentValue, data[index].a2);
     });
-
     $('#countries').val('ES');
 }
 
