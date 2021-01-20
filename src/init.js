@@ -12,3 +12,10 @@ $(document).ready(function(){
     albumListener();
     videoListener();
 })
+
+$('#search').on('focus', function(){
+    $(this).parent().css('border', '#52cffe 1px solid');
+});
+$('#search').on('focusout', function(){
+    $(this).parent().css('border', 'var(--background-active) 1px solid');
+});

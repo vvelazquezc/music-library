@@ -27,6 +27,12 @@ ul {
     margin: 0 10px;
     outline: none;
 }
+
+.ul-settings button.active{
+    background:  #52cffe ;
+    color: var(--background-active);
+}
+
 .result__txt {
     color: #858585;
     padding: 10px;

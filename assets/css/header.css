@@ -85,6 +85,10 @@ select {
     border: none;
     border-radius: 20px;
 }
+
+.header-search-input:focus{
+    outline:none;
+}
 ::placeholder { 
     color: white;
     opacity: 0.6;

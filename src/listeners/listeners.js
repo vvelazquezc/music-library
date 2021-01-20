@@ -30,8 +30,10 @@ function searchListeners() {
   $("#explicit").on("click", function () {
     if (explicit === "yes") {
       explicit = "no";
+      $(this). removeClass('active');
     } else {
       explicit = "yes";
+      $(this). addClass('active');
     }
     pauseSongMain();
     searchIfInput();
@@ -58,12 +60,14 @@ function showFavorites(){
   $('#closeFavoritesButon').on('click', hideFavorites);
   printFavorites();
   favoriteListener();
+  pauseSongMain();
   
 }
 
 function hideFavorites(){
   $('#favorites').addClass('hide');
   $('#closeFavoritesButon').off('click', hideFavorites);
+  pauseSongMain();
   removeFavoriteListener();
 }
 
@@ -89,7 +93,6 @@ function songsListener() {
 
 function artistListener() {
   $("#artistsLists").on("click", function (event) {
-    console.log(event.target);
     if ($(event.target).hasClass("fav-button")){
       addRemoveFromFavorites(event.target, currentObjects)
     }else if ($(event.target).parent().hasClass("artist")) {
@@ -163,9 +166,6 @@ function getId(target, object){
       id=object[type][position].trackId;
       break;
     case 'musicArtist':
-      console.log(object);
-      console.log(type);
-      console.log(position);
       id=object[type][position].artistId;
       break;
     case 'album':

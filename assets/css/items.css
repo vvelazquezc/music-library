@@ -18,7 +18,7 @@
     padding: 0 10px;
 }
 .song {
-    width:fit-content;
+    width:100%;
     margin: 1%;
     border-radius: 10px;
     /*box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.3);*/
@@ -103,6 +103,7 @@
 }
 
 .album h3, .video h3{
+    margin: 0 auto;
     margin-top: 2em;
     color:white;
     max-width: 75%;
