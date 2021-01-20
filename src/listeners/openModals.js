@@ -11,6 +11,7 @@ function openSongModal(value, object) {
   }
   function openArtistModal(value, object) {
     const artist = object.musicArtist[value]
+    console.log(value);
     artistModal.render($container, artist)
   }
   function openAlbumModal(value, object) {

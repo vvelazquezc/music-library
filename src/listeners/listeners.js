@@ -3,6 +3,7 @@ import { playSongMain, pauseSongMain, changePlayButton } from "./music.js";
 import { addToFavorites, removeFromFavorites } from '../service/favorites.js';
 import { printFavorites } from '../renders/renderFavorites.js';
 import { openSongModal, openArtistModal, openAlbumModal, openVideoModal } from './openModals.js';
+import { favoriteListener, removeFavoriteListener } from '../listeners/favoriteListeners.js'
 
 let entity = "all";
 let limit = 6;
@@ -56,11 +57,14 @@ function showFavorites(){
   $('#favorites').removeClass('hide');
   $('#closeFavoritesButon').on('click', hideFavorites);
   printFavorites();
+  favoriteListener();
+  
 }
 
 function hideFavorites(){
   $('#favorites').addClass('hide');
   $('#closeFavoritesButon').off('click', hideFavorites);
+  removeFavoriteListener();
 }
 
 function songsListener() {
@@ -72,7 +76,7 @@ function songsListener() {
         changePlayButton(true, event.target);
     pauseSongMain();
     }else if($(event.target).hasClass("fav-button")){
-      addRemoveFromFavorites(event.target)
+      addRemoveFromFavorites(event.target, currentObjects)
     } else if ($(event.target).hasClass("title-song")) {
       const value = $(event.target).val()
       openSongModal(value, currentObjects)
@@ -87,7 +91,7 @@ function artistListener() {
   $("#artistsLists").on("click", function (event) {
     console.log(event.target);
     if ($(event.target).hasClass("fav-button")){
-      addRemoveFromFavorites(event.target)
+      addRemoveFromFavorites(event.target, currentObjects)
     }else if ($(event.target).parent().hasClass("artist")) {
       const value = $(event.target).parent().val()
       openArtistModal(value, currentObjects)
@@ -106,7 +110,7 @@ function albumListener() {
       const value = $(event.target).val()
       openAlbumModal(value, currentObjects)
     } else if ($(event.target).hasClass("fav-button")){
-      addRemoveFromFavorites(event.target)
+      addRemoveFromFavorites(event.target, currentObjects)
     }
   })
 }
@@ -120,7 +124,7 @@ function videoListener() {
       const value = $(event.target).val()
       openVideoModal(value, currentObjects)
     } else if ($(event.target).hasClass("fav-button")){
-      addRemoveFromFavorites(event.target)
+      addRemoveFromFavorites(event.target, currentObjects)
     }
   })
 }
@@ -134,21 +138,21 @@ function changeFavButton(isFavorite, target){
     $(target).removeClass('fas');
   }
 }
-function addRemoveFromFavorites(target){
+function addRemoveFromFavorites(target, object){
   let type = $(target).data('type');
-  let id=getId(target);
+  let id=getId(target, object);
 
   if($(target).hasClass('far')){
     let position=$(target).data('index');
     changeFavButton(true, target);
-    addToFavorites( type , currentObjects[type][position] , id);
+    addToFavorites( type , object[type][position] , id);
   }else{
     changeFavButton(false, target);
     removeFromFavorites( type , id);
   }
 }
 
-function getId(target){
+function getId(target, object){
   
   let type = $(target).data('type');
   let position=$(target).data('index');
@@ -156,16 +160,19 @@ function getId(target){
   let id;
   switch(type){
     case 'musicTrack':
-      id=currentObjects[type][position].trackId;
+      id=object[type][position].trackId;
       break;
     case 'musicArtist':
-      id=currentObjects[type][position].artistId;
+      console.log(object);
+      console.log(type);
+      console.log(position);
+      id=object[type][position].artistId;
       break;
     case 'album':
-      id=currentObjects[type][position]['collectionId'];
+      id=object[type][position]['collectionId'];
       break;
     case 'musicVideo':
-      id=currentObjects[type][position].trackId;
+      id=object[type][position].trackId;
       break;
     default:
       id=0;
@@ -237,4 +244,4 @@ function showAllLists() {
   showList("#videoList");
 }
 
-export {searchListeners, songsListener, openSongModal, artistListener, albumListener, videoListener };
+export {searchListeners, songsListener, openSongModal, artistListener, albumListener, videoListener, addRemoveFromFavorites };

@@ -54,6 +54,10 @@ footer {
     grid-area: footer;
 }
 
+.clickable{
+    cursor: pointer;
+}
+
 
 
 

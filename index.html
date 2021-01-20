@@ -16,34 +16,33 @@
     <div class="wrapper-main">
         <header class="wrapper-header">
             <div class="wrapper-header-menu">
-                <span class="ion-ios-navicon pull-left"><i></i></span>
             </div>
             <div class="wrapper-header-search">
-                <select name="SearchOptions" class="header-search-select" id="searchType">
-                    <option value="all">All</option>
-                    <option value="musicTrack">Songs</option>
-                    <option value="musicArtist">Artist</option>
-                    <option value="album">Album</option>
-                    <option value="musicVideo">Music Video</option>
+                <select name="SearchOptions" class="header-search-select clickable" id="searchType">
+                    <option value="all" class="clickable">All</option>
+                    <option value="musicTrack" class="clickable">Songs</option>
+                    <option value="musicArtist" class="clickable">Artist</option>
+                    <option value="album" class="clickable">Album</option>
+                    <option value="musicVideo" class="clickable">Music Video</option>
                 </select>
-                <input id='search' class="header-search-input" type="text" placeholder="Search...">
+                <input id='search' class="header-search-input clickable" type="text" placeholder="Search...">
             </div>
             <div>
-                <button id="favListButton" class="fas fa-star icon-star"></button>
+                <button id="favListButton" class="fas fa-star icon-star clickable"></button>
             </div>
         </header>
         <section class="wrapper-header-settings">
             <ul class="ul-settings">
                 <li>
-                    <select name="" id="countries"></select>
+                    <select class="clickable" id="countries"></select>
+                </li>
+                <li class="result__txt ">|</li>
+                <li>
+                    <button id="explicit" class="clickable">Explit content</button>
                 </li>
                 <li class="result__txt">|</li>
                 <li>
-                    <button id="explicit">Explit content</button>
-                </li>
-                <li class="result__txt">|</li>
-                <li>
-                    <label name="">Limit result</label><input id="limit" type="range" min="1" max="200" value="6">
+                    <label class="clickable">Limit result</label><input id="limit" type="range" min="1" max="200" value="6">
                 </li>
             </ul>
         </section>
@@ -54,7 +53,7 @@
             <section id='videoList' class="wrapper-main-list"></section>
         </main>
         <section id="favorites" class="favorites hide">
-            <button id="closeFavoritesButon" class="far fa-times-circle favorites--close"></button>
+            <button id="closeFavoritesButon" class="far fa-times-circle favorites--close clickable"></button>
             <h3  class="favorites--title">Favorites</h3>
             <h3>Songs</h3>
             <hr>
