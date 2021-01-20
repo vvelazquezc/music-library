@@ -1,6 +1,8 @@
-import { search } from "../service/entryAPI.js";
+import { search, currentObjects } from "../service/entryAPI.js";
 import { playSongMain, pauseSongMain, changePlayButton } from "./music.js";
 import { addToFavorites, removeFromFavorites } from '../service/favorites.js'
+import { songModal } from '../renders/modalSong.js'
+import { artistModal } from '../renders/modalArtist.js'
 
 let entity = "all";
 let limit = 6;
@@ -8,6 +10,8 @@ let term = "";
 let explicit = "yes";
 let country = "ES";
 
+
+const $container = $('.wrapper-main')
 
 function searchListeners() {
   $("#searchType").on("change", function (event) {
@@ -43,21 +47,39 @@ function searchListeners() {
   });
 }
 
-function songsListener() {
+function openSongModal(value) {
+  const song = currentObjects.musicTrack[value]
+  songModal.render($container, song)
+}
+function openArtistModal(value) {
+  const song = currentObjects.musicTrack[value]
+  artistModal.render($container, song)
+}
+
+function songsListener($container) {
   $("#songsList").on("click", function (event) {
     if ($(event.target).hasClass("fa-play")) {
         changePlayButton(false, event.target);
         playSongMain(event.target);
     }else if ($(event.target).hasClass("fa-pause")){
         changePlayButton(true, event.target);
-        pauseSongMain();
+    pauseSongMain();
     }else if($(event.target).hasClass("fav-button")){
       addRemoveFromFavorites(event.target)
-
-    }else if($(event.target).hasClass("title-song")){
-      console.log("hola");
+    } else if ($(event.target).hasClass("title-song")) {
+      const value = $(event.target).val()
+      openSongModal(value)
     }
   });
+}
+function artistListener($container) {
+  console.log('epa!');
+  // $("#artistsLists").on("click", function (event) {
+  //   if ($(event.target).hasClass("title-artist")) {
+  //     const value = $(event.target).val()
+  //     openSongModal(value)
+  //   }
+  // });
 }
 
 function changeFavButton(isFavorite, target){
@@ -69,7 +91,6 @@ function changeFavButton(isFavorite, target){
     $(target).removeClass('fas');
   }
 }
-
 function addRemoveFromFavorites(target){
   if($(target).hasClass('far')){
     changeFavButton(true, target);
@@ -143,4 +164,4 @@ function showAllLists() {
   showList("#videoList");
 }
 
-export {searchListeners, songsListener };
+export {searchListeners, songsListener, openSongModal, artistListener };

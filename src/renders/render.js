@@ -37,7 +37,7 @@ function printSong(song, index){
 }
 
 function printArtist(artist, index){
-    const $artist = ` <button class="artist" value="${index}">
+    const $artist = ` <button class="artist title-artist" value="${index}">
          <h3>${artist.artistName}</h3>
         <p class="text">${artist.primaryGenreName}</p>
         <button class="far fa-star fav-button "></button>

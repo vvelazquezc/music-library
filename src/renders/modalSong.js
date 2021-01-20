@@ -1,6 +1,7 @@
-const songModal = {
+export const songModal = {
     name: 'songModal',
-    template: (song, artist, album) => `
+    template: (song) => 
+        `
         <div class="modal-item-song">
             <button class="far fa-times-circle button__close">
             </button>
@@ -9,19 +10,20 @@ const songModal = {
                     <button value='${song.previewUrl}' id="play" class="fas fa-play"></button>
                 </div>
                 <div class="modal-song-info">
-                    <h3 class="modal-song">Name of the song</h3>
-                    <span>2,99€</span>
+                    <h3 class="modal-song"${song.trackName}</h3>
+                    <span>${song.trackPrice}$</span>
                 </div>
-                <p class="text modal-artist">Name of Artist</p>
-                <p class="text modal-album">Name of Album <span>2019</span></p>
-                <p modal-link>link in Itunes</p>
+                <p class="text modal-artist">${song.artistName}</p>
+                <p class="text modal-album">${song.collectionName} <span>${new Date(song.releaseDate)}</span></p>
+                <a href="${song.trackViewUrl}" class="modal-link">Link in Itunes</a>
             </div>
         </div>
         <div class="modal-item-background"></div>
     `,
     render: function ($container, song) {
-        const html = this.template(song, artist)
+        const html = this.template(song)
         const $modal = $(html)
+        console.log('llego hasta aqui');
 
         const $closeModal = $modal.find('.button__close')
         const $closeBackground = $modal.find('.modal-item-background')
