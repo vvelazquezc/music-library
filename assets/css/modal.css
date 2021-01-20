@@ -90,3 +90,6 @@ h4 {
     font-weight: 500;
     margin-bottom: 0;
 }
+.modal-artist, .modal-album {
+    cursor: pointer;
+}

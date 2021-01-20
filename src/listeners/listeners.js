@@ -80,6 +80,9 @@ function songsListener() {
     } else if ($(event.target).hasClass("title-song")) {
       const value = $(event.target).val()
       openSongModal(value, currentObjects)
+    } else if ($(event.target).hasClass("title-artist")) {
+      const value = $(event.target).data('index')
+      openArtistModal(value, currentObjects)
     }
   });
 }

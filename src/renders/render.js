@@ -33,7 +33,7 @@ function printSong(song, index){
         </div>
         <div class="item-info">
             <button value="${index}" class="title-song clickable">${song.trackName}</button>
-            <button class="text clickable">${song.artistName}</button>
+            <button class="title-artist" data-index="${index}">${song.artistName}</button>
         </div>
         <button data-index="${index}" data-type="musicTrack" class="${starType} fa-star fav-button clickable"></button>
         
@@ -81,7 +81,7 @@ function printVideo(video, index){
     }
     const $video = `<button value="${index}" class="video clickable" style="background: url('${video.artworkUrl100}')no-repeat; background-size: cover;">
     <div class="background">
-        <h3>${video.trackName}</h3>
+        <h3 class="title-video">${video.trackName}</h3>
         <p class="text">${video.artistName}</p>
         <a data-type="musicVideo" data-index="${index}" class="${starType} fa-star fav-button clickable"></a>
    <div>
