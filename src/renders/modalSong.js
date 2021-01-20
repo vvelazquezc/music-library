@@ -2,20 +2,20 @@ export const songModal = {
     name: 'songModal',
     template: (song) => 
         `
-        <div class="modal-item-song">
+        <div class="modal-item">
             <button class="far fa-times-circle button__close">
             </button>
             <div class="modal-song">
-                <div class="modal-song-cover">
+                <div class="modal-cover" style="background: url('${song.artworkUrl100}') no-repeat; background-size: cover; background-position: center;">
                     <button value='${song.previewUrl}' id="play" class="fas fa-play"></button>
                 </div>
-                <div class="modal-song-info">
-                    <h3 class="modal-song"${song.trackName}</h3>
-                    <span>${song.trackPrice}$</span>
+                <div class="modal-info">
+                    <h3 class="modal-artist modal-title1">${song.trackName}</h3>
+                    <span class="modal-price">${song.trackPrice}$</span>
                 </div>
-                <p class="text modal-artist">${song.artistName}</p>
-                <p class="text modal-album">${song.collectionName} <span>${new Date(song.releaseDate)}</span></p>
-                <a href="${song.trackViewUrl}" class="modal-link">Link in Itunes</a>
+                <h4 class="modal-artist">${song.artistName}</h4>
+                <p class="text modal-album">${song.collectionName} - <span class="modal-date"n>${new Date(song.releaseDate).getFullYear()}</span></p>
+                <p class="modal-link"><a href="${song.trackViewUrl}" class="modal-link">Link in Itunes</a></p>
             </div>
         </div>
         <div class="modal-item-background"></div>
