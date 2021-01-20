@@ -35,7 +35,7 @@ function printSong(song, index){
             <button value="${index}" class="title-song">${song.trackName}</button>
             <button class="text">${song.artistName}</button>
         </div>
-        <button value="${index}" data-type="musicTrack" class="${starType} fa-star fav-button "></button>
+        <button data-index="${index}" data-type="musicTrack" class="${starType} fa-star fav-button "></button>
         
     </div>
     
@@ -52,7 +52,7 @@ function printArtist(artist, index){
     const $artist = ` <button class="artist title-artist" value="${index}">
          <h3>${artist.artistName}</h3>
         <p class="text">${artist.primaryGenreName}</p>
-        <button class=" ${starType} fa-star fav-button "></button>
+        <a data-type="musicArtist" data-index="${index}" class=" ${starType} fa-star fav-button "></a>
     </button>`;
     $('#artistsLists').append($artist);
 }
@@ -67,7 +67,7 @@ function printAlbum(album, index){
     <div class="background">
         <h3>${album.collectionName}</h3>
         <p class="text">${album.artistName}</p>
-        <a class="${starType} fa-star fav-button "></a>
+        <a data-type="album" data-index="${index}" class="${starType} fa-star fav-button "></a>
    <div>
 </button>`;
     $('#albumList').append($album);
@@ -83,7 +83,7 @@ function printVideo(video, index){
     <div class="background">
         <h3>${video.trackName}</h3>
         <p class="text">${video.artistName}</p>
-        <a class="${starType} fa-star fav-button "></a>
+        <a data-type="musicVideo" data-index="${index}" class="${starType} fa-star fav-button "></a>
    <div>
 </button>`;
     $('#videoList').append($video);

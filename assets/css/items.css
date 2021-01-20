@@ -71,6 +71,7 @@
 
 
 .artist{
+    position:relative;
     border-radius: 10px;
     width:100%;
     border: none;
@@ -85,7 +86,7 @@
 
 .album, .video{
     width: 100%;
-    margin: 1%;
+    margin: 1% 0;
     border-radius: 10px;
     /*box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.3);*/
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
@@ -95,6 +96,7 @@
     appearance:none;
 }
 .album>.background, .video>.background{
+    position: relative;
     margin-top: -20px;
     padding: 20px 0;
 
@@ -103,6 +105,7 @@
 .album h3, .video h3{
     margin-top: 2em;
     color:white;
+    max-width: 75%;
 }
 
 .album .fav-button, .video .fav-button{

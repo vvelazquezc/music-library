@@ -1,6 +1,7 @@
 import { search, currentObjects } from "../service/entryAPI.js";
 import { playSongMain, pauseSongMain, changePlayButton } from "./music.js";
 import { addToFavorites, removeFromFavorites } from '../service/favorites.js'
+import { printFavorites } from '../renders/renderFavorites.js'
 import { songModal } from '../renders/modalSong.js'
 import { artistModal } from '../renders/modalArtist.js'
 import { albumModal } from '../renders/modalAlbum.js'
@@ -57,6 +58,7 @@ function searchListeners() {
 function showFavorites(){
   $('#favorites').removeClass('hide');
   $('#closeFavoritesButon').on('click', hideFavorites);
+  printFavorites();
 }
 
 function hideFavorites(){
@@ -100,14 +102,16 @@ function songsListener() {
 
 function artistListener() {
   $("#artistsLists").on("click", function (event) {
-    console.log(this);
-    if ($(event.target).parent().hasClass("artist")) {
+    console.log(event.target);
+    if ($(event.target).hasClass("fav-button")){
+      addRemoveFromFavorites(event.target)
+    }else if ($(event.target).parent().hasClass("artist")) {
       const value = $(event.target).parent().val()
       openArtistModal(value)
     } else if ($(event.target).hasClass("artist")) {
       const value = $(event.target).val()
       openArtistModal(value)
-    }
+    } 
   })
 }
 function albumListener() {
@@ -118,6 +122,8 @@ function albumListener() {
     } else if ($(event.target).hasClass("album")) {
       const value = $(event.target).val()
       openAlbumModal(value)
+    } else if ($(event.target).hasClass("fav-button")){
+      addRemoveFromFavorites(event.target)
     }
   })
 }
@@ -130,6 +136,8 @@ function videoListener() {
     } else if ($(event.target).hasClass("video")) {
       const value = $(event.target).val()
       openVideoModal(value)
+    } else if ($(event.target).hasClass("fav-button")){
+      addRemoveFromFavorites(event.target)
     }
   })
 }
@@ -148,7 +156,7 @@ function addRemoveFromFavorites(target){
   let id=getId(target);
 
   if($(target).hasClass('far')){
-    let position=$(target).val();
+    let position=$(target).data('index');
     changeFavButton(true, target);
     addToFavorites( type , currentObjects[type][position] , id);
   }else{
@@ -158,8 +166,10 @@ function addRemoveFromFavorites(target){
 }
 
 function getId(target){
+  
   let type = $(target).data('type');
-  let position=$(target).val();
+  let position=$(target).data('index');
+
   let id;
   switch(type){
     case 'musicTrack':
@@ -169,7 +179,7 @@ function getId(target){
       id=currentObjects[type][position].artistId;
       break;
     case 'album':
-      id=currentObjects[type][position].collectionId;
+      id=currentObjects[type][position]['collectionId'];
       break;
     case 'musicVideo':
       id=currentObjects[type][position].trackId;

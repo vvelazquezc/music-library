@@ -33,4 +33,5 @@ function getFavorites(){
     return favorites;
 }
 
+
 export { getFavoritesFromLocalStorage, addToFavorites, removeFromFavorites, getFavorites };

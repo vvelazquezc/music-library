@@ -42,6 +42,36 @@
         display: flex;
         flex-direction: column;
     }
+    main {
+        max-height: 75vh;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+    .favorites{
+        width: 40vw;
+        height: 100vh;
+        top:0;
+        right: 0;
+        background-color: var(--background-active);
+        transition: right 1s ease-in-out;
+        box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hide{
+        right: -50vw;
+        width: 40vw;
+        height: 100vh;
+    }
+
+    .favorites .song {
+        min-width:31.333%;
+        margin: 1%;
+        border-radius: 10px;
+        /*box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.3);*/
+        box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+    
 }
 
 
