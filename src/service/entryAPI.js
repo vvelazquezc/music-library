@@ -3,7 +3,7 @@ import { printObjects, printCountries } from '../renders/render.js'
 
 let currentObjects = {
     musicTrack:[],
-    musicArtis:[],
+    musicArtist:[],
     album:[],
     musicVideo: []
 }

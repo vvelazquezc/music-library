@@ -50,11 +50,11 @@ function openSongModal(value) {
   songModal.render($container, song)
 }
 function openArtistModal(value) {
-  const song = currentObjects.musicTrack[value]
-  artistModal.render($container, song)
+  const artist = currentObjects.musicArtist[value]
+  artistModal.render($container, artist)
 }
 
-function songsListener($container) {
+function songsListener() {
   $("#songsList").on("click", function (event) {
     if ($(event.target).hasClass("fa-play")) {
         changePlayButton(false, event.target);
@@ -69,14 +69,18 @@ function songsListener($container) {
   });
 }
 
-function artistListener($container) {
-  console.log('epa!');
-  // $("#artistsLists").on("click", function (event) {
-  //   if ($(event.target).hasClass("title-artist")) {
-  //     const value = $(event.target).val()
-  //     openSongModal(value)
-  //   }
-  // });
+function artistListener() {
+  $("#artistsLists").on("click", function (event) {
+    console.log(this);
+    if ($(event.target).parent().hasClass("artist")) {
+      const value = $(event.target).parent().val()
+      openArtistModal(value)
+    } else if ($(event.target).hasClass("artist")) {
+      const value = $(event.target).val()
+      openArtistModal(value)
+    }
+      // openSongModal(value)
+  })
 }
 
 function playSongMain(target){
