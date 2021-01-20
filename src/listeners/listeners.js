@@ -3,6 +3,8 @@ import { playSongMain, pauseSongMain, changePlayButton } from "./music.js";
 import { addToFavorites, removeFromFavorites } from '../service/favorites.js'
 import { songModal } from '../renders/modalSong.js'
 import { artistModal } from '../renders/modalArtist.js'
+import { albumModal } from '../renders/modalAlbum.js'
+import { videoModal } from '../renders/modalMVideo.js'
 
 let entity = "all";
 let limit = 6;
@@ -67,11 +69,19 @@ function openSongModal(value) {
   songModal.render($container, song)
 }
 function openArtistModal(value) {
-  const song = currentObjects.musicTrack[value]
-  artistModal.render($container, song)
+  const artist = currentObjects.musicArtist[value]
+  artistModal.render($container, artist)
+}
+function openAlbumModal(value) {
+  const artist = currentObjects.album[value]
+  albumModal.render($container, artist)
+}
+function openVideoModal(value) {
+  const musicVideo = currentObjects.musicVideo[value]
+  videoModal.render($container, musicVideo)
 }
 
-function songsListener($container) {
+function songsListener() {
   $("#songsList").on("click", function (event) {
     if ($(event.target).hasClass("fa-play")) {
         changePlayButton(false, event.target);
@@ -88,14 +98,40 @@ function songsListener($container) {
   });
 }
 
-function artistListener($container) {
-  console.log('epa!');
-  // $("#artistsLists").on("click", function (event) {
-  //   if ($(event.target).hasClass("title-artist")) {
-  //     const value = $(event.target).val()
-  //     openSongModal(value)
-  //   }
-  // });
+function artistListener() {
+  $("#artistsLists").on("click", function (event) {
+    console.log(this);
+    if ($(event.target).parent().hasClass("artist")) {
+      const value = $(event.target).parent().val()
+      openArtistModal(value)
+    } else if ($(event.target).hasClass("artist")) {
+      const value = $(event.target).val()
+      openArtistModal(value)
+    }
+  })
+}
+function albumListener() {
+  $("#albumList").on("click", function (event) {
+    if ($(event.target).parent().hasClass("album")) {
+      const value = $(event.target).parent().val()
+      openAlbumModal(value)
+    } else if ($(event.target).hasClass("album")) {
+      const value = $(event.target).val()
+      openAlbumModal(value)
+    }
+  })
+}
+
+function videoListener() {
+  $("#videoList").on("click", function (event) {
+    if ($(event.target).parent().hasClass("video")) {
+      const value = $(event.target).parent().val()
+      openVideoModal(value)
+    } else if ($(event.target).hasClass("video")) {
+      const value = $(event.target).val()
+      openVideoModal(value)
+    }
+  })
 }
 
 function changeFavButton(isFavorite, target){
@@ -208,4 +244,4 @@ function showAllLists() {
   showList("#videoList");
 }
 
-export {searchListeners, songsListener, openSongModal, artistListener };
+export {searchListeners, songsListener, openSongModal, artistListener, albumListener, videoListener };
