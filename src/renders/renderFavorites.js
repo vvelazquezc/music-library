@@ -49,8 +49,8 @@ function printSongFavorites(song){
             <button id="${song.trackId}" value="${song.previewUrl}" class="fas fa-play"></button>
         </div>
         <div class="item-info">
-            <button class="title-song">${song.trackName}</button>
-            <button class="text">${song.artistName}</button>
+            <button class="title-song" value="${song.trackId}">${song.trackName}</button>
+            <button class="text" value="${song.artistId}">${song.artistName}</button>
         </div>
         <button data-type="musicTrack" class="${starType} fa-star fav-button "></button>
     </div>

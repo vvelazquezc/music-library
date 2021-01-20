@@ -1,11 +1,8 @@
 import { search, currentObjects } from "../service/entryAPI.js";
 import { playSongMain, pauseSongMain, changePlayButton } from "./music.js";
-import { addToFavorites, removeFromFavorites } from '../service/favorites.js'
-import { printFavorites } from '../renders/renderFavorites.js'
-import { songModal } from '../renders/modalSong.js'
-import { artistModal } from '../renders/modalArtist.js'
-import { albumModal } from '../renders/modalAlbum.js'
-import { videoModal } from '../renders/modalMVideo.js'
+import { addToFavorites, removeFromFavorites } from '../service/favorites.js';
+import { printFavorites } from '../renders/renderFavorites.js';
+import { openSongModal, openArtistModal, openAlbumModal, openVideoModal } from './openModals.js';
 
 let entity = "all";
 let limit = 6;
@@ -14,7 +11,7 @@ let explicit = "yes";
 let country = "ES";
 
 
-const $container = $('.wrapper-main')
+
 
 function searchListeners() {
   $("#searchType").on("change", function (event) {
@@ -66,23 +63,6 @@ function hideFavorites(){
   $('#closeFavoritesButon').off('click', hideFavorites);
 }
 
-function openSongModal(value) {
-  const song = currentObjects.musicTrack[value]
-  songModal.render($container, song)
-}
-function openArtistModal(value) {
-  const artist = currentObjects.musicArtist[value]
-  artistModal.render($container, artist)
-}
-function openAlbumModal(value) {
-  const artist = currentObjects.album[value]
-  albumModal.render($container, artist)
-}
-function openVideoModal(value) {
-  const musicVideo = currentObjects.musicVideo[value]
-  videoModal.render($container, musicVideo)
-}
-
 function songsListener() {
   $("#songsList").on("click", function (event) {
     if ($(event.target).hasClass("fa-play")) {
@@ -95,7 +75,7 @@ function songsListener() {
       addRemoveFromFavorites(event.target)
     } else if ($(event.target).hasClass("title-song")) {
       const value = $(event.target).val()
-      openSongModal(value)
+      openSongModal(value, currentObjects)
     }
   });
 }
@@ -107,10 +87,10 @@ function artistListener() {
       addRemoveFromFavorites(event.target)
     }else if ($(event.target).parent().hasClass("artist")) {
       const value = $(event.target).parent().val()
-      openArtistModal(value)
+      openArtistModal(value, currentObjects)
     } else if ($(event.target).hasClass("artist")) {
       const value = $(event.target).val()
-      openArtistModal(value)
+      openArtistModal(value, currentObjects)
     } 
   })
 }
@@ -118,10 +98,10 @@ function albumListener() {
   $("#albumList").on("click", function (event) {
     if ($(event.target).parent().hasClass("album")) {
       const value = $(event.target).parent().val()
-      openAlbumModal(value)
+      openAlbumModal(value, currentObjects)
     } else if ($(event.target).hasClass("album")) {
       const value = $(event.target).val()
-      openAlbumModal(value)
+      openAlbumModal(value, currentObjects)
     } else if ($(event.target).hasClass("fav-button")){
       addRemoveFromFavorites(event.target)
     }
@@ -132,10 +112,10 @@ function videoListener() {
   $("#videoList").on("click", function (event) {
     if ($(event.target).parent().hasClass("video")) {
       const value = $(event.target).parent().val()
-      openVideoModal(value)
+      openVideoModal(value, currentObjects)
     } else if ($(event.target).hasClass("video")) {
       const value = $(event.target).val()
-      openVideoModal(value)
+      openVideoModal(value, currentObjects)
     } else if ($(event.target).hasClass("fav-button")){
       addRemoveFromFavorites(event.target)
     }
