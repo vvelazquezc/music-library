@@ -6,7 +6,8 @@ let term = "";
 let explicit = "yes";
 let country = "ES";
 let count = 0;
-let myAudio;
+let actualSongId=null;
+let myAudio=null;
 
 function searchListeners() {
   $("#searchType").on("change", function (event) {
@@ -43,19 +44,41 @@ function searchListeners() {
 function songsListener() {
   $("#songsList").on("click", function (event) {
     if ($(event.target).hasClass("fa-play")) {
-        $(event.target).removeClass("fa-play");
-        $(event.target).addClass("fa-pause");
-        if(myAudio!=new Audio(event.target.value)){
-            myAudio = new Audio(event.target.value);
-        }
-        
-        myAudio.play();
+        changePlayButton(false, event.target);
+        playSongMain(event.target);
     }else if ($(event.target).hasClass("fa-pause")){
-        $(event.target).addClass("fa-play");
-        $(event.target).removeClass("fa-pause");
+        changePlayButton(true, event.target);
         myAudio.pause();
     }
   });
+}
+
+function playSongMain(target){
+    if(myAudio!=new Audio(target.value)){
+        if(myAudio!=null){
+            myAudio.pause();
+        }
+        myAudio = new Audio(target.value);
+        $(myAudio).on('ended', function() {
+            changePlayButton(true, target);
+         });
+    }
+    actualSongId=target.id;
+    myAudio.play();
+}
+
+function changePlayButton(isPlaying, target){
+    if(isPlaying){
+        $(target).addClass("fa-play");
+        $(target).removeClass("fa-pause");
+    }else{
+        $(target).removeClass("fa-play");
+        $(target).addClass("fa-pause");
+        if(actualSongId!=null && actualSongId!=target.id){
+            $(`#${actualSongId}`).addClass("fa-play");
+            
+        }
+    }
 }
 
 function searchIfInput() {

@@ -22,7 +22,7 @@ function printSong(song, index){
     const $song = ` <article class="song" style="background: url('${song.artworkUrl100}')no-repeat; background-size: cover;" >
     <div class="background grid-song">
         <div class="item-cover">
-            <button value="${song.previewUrl}" class="fas fa-play"></button>
+            <button id="${song.trackId}" value="${song.previewUrl}" class="fas fa-play"></button>
         </div>
         <div class="item-info">
             <button value="${index}"><h3>${song.trackName}</h3></button>
@@ -37,7 +37,7 @@ function printSong(song, index){
 }
 
 function printArtist(artist, index){
-    const $artist = ` <button class="artist" value="${index}>
+    const $artist = ` <button class="artist" value="${index}">
          <h3>${artist.artistName}</h3>
         <p class="text">${artist.primaryGenreName}</p>
         <button class="fas fa-star fav-button "></button>
@@ -46,7 +46,7 @@ function printArtist(artist, index){
 }
 
 function printAlbum(album, index){
-    const $album = ` <button value="${index} class="album" style="background: url('${album.artworkUrl100}')no-repeat; background-size: cover;">
+    const $album = ` <button value="${index}" class="album" style="background: url('${album.artworkUrl100}')no-repeat; background-size: cover;">
     <div class="background">
         <h3>${album.collectionName}</h3>
         <p class="text">${album.artistName}</p>
@@ -57,7 +57,7 @@ function printAlbum(album, index){
 }
 
 function printVideo(video, index){
-    const $video = `<button value="${index} class="video" style="background: url('${video.artworkUrl100}')no-repeat; background-size: cover;">
+    const $video = `<button value="${index}" class="video" style="background: url('${video.artworkUrl100}')no-repeat; background-size: cover;">
     <div class="background">
         <h3>${video.trackName}</h3>
         <p class="text">${video.artistName}</p>
