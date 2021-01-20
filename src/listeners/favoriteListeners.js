@@ -39,23 +39,29 @@ function whichElement(event){
     } else if ($(target).hasClass("title-song")) {
       const value = $(target).val();
       openSongModal(value, favorites);
-    } else if ($(target).hasClass("title-song")) {
+    } else if ($(target).hasClass("title-artist")) {
       const value = $(target).val();
       getById(value);
     } else if ($(event.target).parent().hasClass("album")) {
       const value = $(event.target).parent().val();
       openAlbumModal(value, favorites);
+    } else if ($(event.target).parent().parent().hasClass("album")) {
+      const value = $(event.target).parent().parent().val();
+      openAlbumModal(value, favorites);
     } else if ($(event.target).hasClass("album")) {
-      const value = $(event.target).val();
+      const value = $(event.target).parent().parent().val();
       openAlbumModal(value, favorites);
     } else if ($(event.target).parent().hasClass("artist")) {
       const value = $(event.target).parent().val();
       openArtistModal(value, favorites);
     } else if ($(event.target).hasClass("artist")) {
-      const value = $(event.target).val();
+      const value = $(event.target).parent().parent().val();
       openArtistModal(value, favorites);
     } else if ($(event.target).parent().hasClass("video")) {
       const value = $(event.target).parent().val();
+      openVideoModal(value, favorites);
+    } else if ($(event.target).parent().parent().hasClass("video")) {
+      const value = $(event.target).val();
       openVideoModal(value, favorites);
     } else if ($(event.target).hasClass("video")) {
       const value = $(event.target).val();

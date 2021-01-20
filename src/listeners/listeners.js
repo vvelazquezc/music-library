@@ -95,7 +95,7 @@ function artistListener() {
   $("#artistsLists").on("click", function (event) {
     if ($(event.target).hasClass("fav-button")){
       addRemoveFromFavorites(event.target, currentObjects)
-    }else if ($(event.target).parent().hasClass("artist")) {
+    } else if ($(event.target).parent().hasClass("artist")) {
       const value = $(event.target).parent().val()
       openArtistModal(value, currentObjects)
     } else if ($(event.target).hasClass("artist")) {
@@ -108,6 +108,9 @@ function albumListener() {
   $("#albumList").on("click", function (event) {
     if ($(event.target).parent().hasClass("album")) {
       const value = $(event.target).parent().val()
+      openAlbumModal(value, currentObjects)
+    } else if ($(event.target).parent().parent().hasClass("album")) {
+      const value = $(event.target).parent().parent().val()
       openAlbumModal(value, currentObjects)
     } else if ($(event.target).hasClass("album")) {
       const value = $(event.target).val()
@@ -126,7 +129,10 @@ function videoListener() {
     } else if ($(event.target).hasClass("video")) {
       const value = $(event.target).val()
       openVideoModal(value, currentObjects)
-    } else if ($(event.target).hasClass("fav-button")){
+    } else if ($(event.target).parent().parent().hasClass("video")) {
+      const value = $(event.target).parent().parent().val()
+      openVideoModal(value, currentObjects)
+    }else if ($(event.target).hasClass("fav-button")){
       addRemoveFromFavorites(event.target, currentObjects)
     }
   })

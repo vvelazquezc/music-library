@@ -24,10 +24,9 @@
     /*box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.3);*/
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
     overflow: hidden;
+    border: 2% solid var(--background-main)
 }
-.song:hover{
-    background-color: var(--background-active);
-}
+
 .item-info button {
     grid-area: "info";
     padding: 0 10px;
@@ -49,6 +48,12 @@
     height:100%;
     align-items: center;
     background: linear-gradient(0deg,var(--background-active) 0%, rgba(0,0,0,0.5) 100%);
+}
+.album:hover .background, .video:hover .background, .album:focus .background, .video:focus .background{
+    background: linear-gradient(0deg,var(--background-main) 0%, rgba(0,0,0,0.5) 100%);
+}
+.album:hover, .video:hover, .album:focus, .video:focus{
+    outline:none;
 }
 .grid-song{
     display: grid;
@@ -73,11 +78,14 @@
 .artist{
     position:relative;
     border-radius: 10px;
-    width:100%;
+    width:98%;
+    margin: 1%;
     border: none;
     align-items: center;
-    margin-bottom: 10px;
     background: linear-gradient(0deg,var(--color-main) 0%, var(--background-active));
+}
+.artist:hover, .artist:focus{
+    background: linear-gradient(0deg,var(--color-main) 0%, var(--background-main));
 }
 
 .artist >h3{
@@ -111,4 +119,14 @@
 
 .album .fav-button, .video .fav-button{
     top:2em;
+}
+
+.fa-play:hover, .fa-play:focus,
+.fa-pause:hover, .fa-pause:focus,
+.fa-star:hover, .fa-star:focus,
+.title-song:hover, .title-song:focus,
+.title-artist:hover, .title-artist:focus{
+    outline:none;
+    color:  #52cffe;
+    border-color: #52cffe;
 }
