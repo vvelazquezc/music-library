@@ -1,0 +1,50 @@
+.favorites{
+
+    z-index: 2;
+    position:fixed;
+    height: 100vh;
+    top:0;
+    right: 0;
+    background-color: var(--background-active);
+    transition: right 1s ease-in-out;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    overflow-y: scroll;
+    padding:1em;
+}
+
+.hide{
+    right: -120vw;
+    width: 100vw;
+    height: 100vh;
+}
+
+.favorites--close{
+    position: absolute;
+    top:0.7em;
+    left:0.7em;
+    background-color: #0000;
+    font-size: x-large;
+    border:none;
+    color:white;
+}
+
+.favorites--title{
+    font-size: xx-large;
+    margin: 1em auto;
+    text-align: center;
+}
+
+.favorites--songs{
+    display:flex;
+    flex-wrap: wrap;
+}
+.favorites--videos{
+    margin-bottom: 2em;
+}
+
+.favorites .title-song{
+    font-weight: 700;
+    font-size: large;
+}
+

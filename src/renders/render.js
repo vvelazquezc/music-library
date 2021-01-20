@@ -1,3 +1,5 @@
+import { getFavorites } from '../service/favorites.js'
+
 function printObjects(type, data){
     switch(type){
         case 'musicTrack':
@@ -19,16 +21,22 @@ function printObjects(type, data){
 
 function printSong(song, index){
     //const time=(song.trackTimeMillis-(song.trackTimeMillis%60000))/60000+':'+(song.trackTimeMillis-(song.trackTimeMillis%1000))/1000%60;
+    let favorites=getFavorites();
+    let starType='far';
+    if(favorites.musicTrack[song.trackId]!=null){
+        starType='fas';
+    }
     const $song = ` <article class="song" style="background: url('${song.artworkUrl100}')no-repeat; background-size: cover;" >
     <div class="background grid-song">
         <div class="item-cover">
             <button id="${song.trackId}" value="${song.previewUrl}" class="fas fa-play"></button>
         </div>
         <div class="item-info">
-            <button class="title-song" value="${index}">${song.trackName}</button>
-            <button><p class="text">${song.artistName}</p></button>
+            <button value="${index}" class="title-song">${song.trackName}</button>
+            <button class="text">${song.artistName}</button>
         </div>
-        <button class="fas fa-star fav-button "></button>
+        <button data-index="${index}" data-type="musicTrack" class="${starType} fa-star fav-button "></button>
+        
     </div>
     
 </article>`;
@@ -36,31 +44,46 @@ function printSong(song, index){
 }
 
 function printArtist(artist, index){
-    const $artist = ` <button class="artist" value="${index}">
+    let favorites=getFavorites();
+    let starType='far';
+    if(favorites.musicArtist[artist.artistId]!=null){
+        starType='fas';
+    }
+    const $artist = ` <button class="artist title-artist" value="${index}">
          <h3>${artist.artistName}</h3>
         <p class="text">${artist.primaryGenreName}</p>
-        <button class="fas fa-star fav-button "></button>
+        <a data-type="musicArtist" data-index="${index}" class=" ${starType} fa-star fav-button "></a>
     </button>`;
     $('#artistsLists').append($artist);
 }
 
 function printAlbum(album, index){
+    let favorites=getFavorites();
+    let starType='far';
+    if(favorites.album[album.collectionId]!=null){
+        starType='fas';
+    }
     const $album = ` <button value="${index}" class="album" style="background: url('${album.artworkUrl100}')no-repeat; background-size: cover;">
     <div class="background">
         <h3>${album.collectionName}</h3>
         <p class="text">${album.artistName}</p>
-        <a class="fas fa-star fav-button "></a>
+        <a data-type="album" data-index="${index}" class="${starType} fa-star fav-button "></a>
    <div>
 </button>`;
     $('#albumList').append($album);
 }
 
 function printVideo(video, index){
+    let favorites=getFavorites();
+    let starType='far';
+    if(favorites.musicVideo[video.trackId]!=null){
+        starType='fas';
+    }
     const $video = `<button value="${index}" class="video" style="background: url('${video.artworkUrl100}')no-repeat; background-size: cover;">
     <div class="background">
         <h3>${video.trackName}</h3>
         <p class="text">${video.artistName}</p>
-        <a class="fas fa-star fav-button "></a>
+        <a data-type="musicVideo" data-index="${index}" class="${starType} fa-star fav-button "></a>
    <div>
 </button>`;
     $('#videoList').append($video);

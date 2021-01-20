@@ -2,13 +2,16 @@
 @import './colors.css';
 @import './settings.css';
 @import './items.css';
+@import './favorites.css';
 @import './mediaQuery.css';
 @import './modal.css';
+
 
 body {
     background-color: var(--background-main);
     color: white;
     font-family: 'Poppins', sans-serif;
+    
 }
 .wrapper-main {
     max-width: 1200px;
@@ -36,11 +39,13 @@ hr {
 main {
     grid-area: main;
     width:100%;
+
 }
 .wrapper-main-list {
     display: flex;
     flex-flow: row wrap;
     width: 100%;
+    
 }
 .wrapper-main-list-title{
     width:100%;
@@ -48,3 +53,25 @@ main {
 footer {
     grid-area: footer;
 }
+
+
+
+
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--background-main); 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #52cffe; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #52cffe; 
+  }

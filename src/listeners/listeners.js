@@ -1,4 +1,7 @@
 import { search, currentObjects } from "../service/entryAPI.js";
+import { playSongMain, pauseSongMain, changePlayButton } from "./music.js";
+import { addToFavorites, removeFromFavorites } from '../service/favorites.js'
+import { printFavorites } from '../renders/renderFavorites.js'
 import { songModal } from '../renders/modalSong.js'
 import { artistModal } from '../renders/modalArtist.js'
 import { albumModal } from '../renders/modalAlbum.js'
@@ -9,20 +12,20 @@ let limit = 6;
 let term = "";
 let explicit = "yes";
 let country = "ES";
-let count = 0;
-let actualSongId=null;
-let myAudio=null;
+
 
 const $container = $('.wrapper-main')
 
 function searchListeners() {
   $("#searchType").on("change", function (event) {
     entity = $(this).val();
+    pauseSongMain();
     searchIfInput();
   });
 
   $("#search").on("change", function () {
     term = $(this).val();
+    pauseSongMain();
     searchIfInput();
   });
 
@@ -32,7 +35,7 @@ function searchListeners() {
     } else {
       explicit = "yes";
     }
-    console.log(explicit);
+    pauseSongMain();
     searchIfInput();
   });
 
@@ -42,9 +45,25 @@ function searchListeners() {
   });
   $("#countries").on("change", function () {
     country = $(this).val();
-    console.log(country);
+    pauseSongMain();
     searchIfInput();
   });
+
+  $("#favListButton").on("click", function () {
+    showFavorites();
+  });
+  
+}
+
+function showFavorites(){
+  $('#favorites').removeClass('hide');
+  $('#closeFavoritesButon').on('click', hideFavorites);
+  printFavorites();
+}
+
+function hideFavorites(){
+  $('#favorites').addClass('hide');
+  $('#closeFavoritesButon').off('click', hideFavorites);
 }
 
 function openSongModal(value) {
@@ -71,7 +90,9 @@ function songsListener() {
         playSongMain(event.target);
     }else if ($(event.target).hasClass("fa-pause")){
         changePlayButton(true, event.target);
-        myAudio.pause();
+    pauseSongMain();
+    }else if($(event.target).hasClass("fav-button")){
+      addRemoveFromFavorites(event.target)
     } else if ($(event.target).hasClass("title-song")) {
       const value = $(event.target).val()
       openSongModal(value)
@@ -81,14 +102,16 @@ function songsListener() {
 
 function artistListener() {
   $("#artistsLists").on("click", function (event) {
-    console.log(this);
-    if ($(event.target).parent().hasClass("artist")) {
+    console.log(event.target);
+    if ($(event.target).hasClass("fav-button")){
+      addRemoveFromFavorites(event.target)
+    }else if ($(event.target).parent().hasClass("artist")) {
       const value = $(event.target).parent().val()
       openArtistModal(value)
     } else if ($(event.target).hasClass("artist")) {
       const value = $(event.target).val()
       openArtistModal(value)
-    }
+    } 
   })
 }
 function albumListener() {
@@ -99,6 +122,8 @@ function albumListener() {
     } else if ($(event.target).hasClass("album")) {
       const value = $(event.target).val()
       openAlbumModal(value)
+    } else if ($(event.target).hasClass("fav-button")){
+      addRemoveFromFavorites(event.target)
     }
   })
 }
@@ -111,37 +136,61 @@ function videoListener() {
     } else if ($(event.target).hasClass("video")) {
       const value = $(event.target).val()
       openVideoModal(value)
+    } else if ($(event.target).hasClass("fav-button")){
+      addRemoveFromFavorites(event.target)
     }
   })
 }
 
-function playSongMain(target){
-    if(myAudio!=new Audio(target.value)){
-        if(myAudio!=null){
-            myAudio.pause();
-        }
-        myAudio = new Audio(target.value);
-        $(myAudio).on('ended', function() {
-            changePlayButton(true, target);
-         });
-    }
-    actualSongId=target.id;
-    myAudio.play();
+function changeFavButton(isFavorite, target){
+  if(isFavorite){
+    $(target).addClass('fas');
+    $(target).removeClass('far');
+  }else{
+    $(target).addClass('far');
+    $(target).removeClass('fas');
+  }
+}
+function addRemoveFromFavorites(target){
+  let type = $(target).data('type');
+  let id=getId(target);
+
+  if($(target).hasClass('far')){
+    let position=$(target).data('index');
+    changeFavButton(true, target);
+    addToFavorites( type , currentObjects[type][position] , id);
+  }else{
+    changeFavButton(false, target);
+    removeFromFavorites( type , id);
+  }
 }
 
-function changePlayButton(isPlaying, target){
-    if(isPlaying){
-        $(target).addClass("fa-play");
-        $(target).removeClass("fa-pause");
-    }else{
-        $(target).removeClass("fa-play");
-        $(target).addClass("fa-pause");
-        if(actualSongId!=null && actualSongId!=target.id){
-            $(`#${actualSongId}`).addClass("fa-play");
-            
-        }
-    }
+function getId(target){
+  
+  let type = $(target).data('type');
+  let position=$(target).data('index');
+
+  let id;
+  switch(type){
+    case 'musicTrack':
+      id=currentObjects[type][position].trackId;
+      break;
+    case 'musicArtist':
+      id=currentObjects[type][position].artistId;
+      break;
+    case 'album':
+      id=currentObjects[type][position]['collectionId'];
+      break;
+    case 'musicVideo':
+      id=currentObjects[type][position].trackId;
+      break;
+    default:
+      id=0;
+      break
+  }
+  return id;
 }
+
 
 function searchIfInput() {
   if (term != "") {
