@@ -10,11 +10,11 @@ export const songModal = {
                     <button value='${song.previewUrl}' id="play" class="fas fa-play"></button>
                 </div>
                 <div class="modal-info">
-                    <h3 class="modal-artist modal-title1">${song.trackName}</h3>
+                    <h3 class="modal-song modal-title1">${song.trackName}</h3>
                     <span class="modal-price">${song.trackPrice}$</span>
                 </div>
                 <h4 class="modal-artist">${song.artistName}</h4>
-                <p class="text modal-album">${song.collectionName} - <span class="modal-date"n>${new Date(song.releaseDate).getFullYear()}</span></p>
+                <p class="text modal-album modal-text">${song.collectionName} - <span class="modal-date">${new Date(song.releaseDate).getFullYear()}</span></p>
                 <p class="modal-link"><a href="${song.trackViewUrl}" class="modal-link">Link in Itunes</a></p>
             </div>
         </div>

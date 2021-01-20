@@ -2,25 +2,25 @@ export const videoModal = {
     name: 'videoModal',
     template: (video) => 
         `
-        <div class="modal-item-song">
+        <div class="modal-item">
             <button class="far fa-times-circle button__close">
             </button>
             <div class="modal-artist">
-                <div class="modal-artist-cover">
-                    <img src="${video.artworkUrl100}" alt="">
+            <div class="modal-cover" style="background: url('${video.artworkUrl100}') no-repeat; background-size: cover; background-position: center;">
+                <button value='${video.previewUrl}' id="play" class="fas fa-play"></button>
+            </div>
+                <div class="modal-info">
+                    <h3 class="modal-song model-title1">${video.trackName}</h3>
+                    <span class="model-price">${video.collectionPrice}$</span>
                 </div>
-                <div class="modal-artist-info">
-                    <h3 class="modal-name">${video.trackName}</h3><span>${video.collectionPrice}$</span>
-                </div>
-                <p class="text modal-artist">${video.artistName}</p>
-                <p class="text modal-artist">${video.primaryGenreName}</p>
-                <p class="text modal-date">${new Date(video.releaseDate).getFullYear()}</p>
-                <a href="${video.trackViewUrl}" class="modal-link">Link in Itunes</a>
+                <h4 class="modal-artist">${video.artistName}</h4>
+                <p class="text modal-text modal-genre">${video.primaryGenreName}</p>
+                <p class="text modal-text modal-date">${new Date(video.releaseDate).getFullYear()}</p>
+                <p class="modal-link"><a href="${video.trackViewUrl}" class="modal-link">Link in Itunes</a></p>
             </div>
         </div>
     `,
     render: function ($container, video) {
-        console.log('llego hasta aqui');
 
         console.log(video);
         const html = this.template(video)

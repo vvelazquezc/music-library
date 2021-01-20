@@ -2,25 +2,26 @@ export const albumModal = {
     name: 'albumModal',
     template: (album) => 
         `
-        <div class="modal-item-song">
+        <div class="modal-item">
             <button class="far fa-times-circle button__close">
             </button>
             <div class="modal-artist">
-                <div class="modal-artist-cover">
+                <div class="modal-cover" style="background: url('${album.artworkUrl100}') no-repeat; background-size: cover; background-position: center;">
                     <img src="${album.artworkUrl100}" alt="">
                 </div>
-                <div class="modal-artist-info">
-                    <h3 class="modal-album">${album.collectionName}</h3><span>${album.collectionPrice}$</span>
+                <div class="modal-info">
+                    <h3 class="modal-album modal-title1">${album.collectionName}</h3><span>${album.collectionPrice}$</span>
                 </div>
-                <p class="text modal-artist">${album.artistName}</p>
-                <p class="text modal-artist">${album.primaryGenreName}</p>
-                <p class="text modal-date">${new Date(album.artistName).getFullYear()}</p>
-                <a href="${album.artistViewUrl}" class="modal-link">Link in Itunes</a>
+                <h4 class="modal-artist">${album.artistName}</h4>
+                <p class="text modal-text modal-genre">${album.primaryGenreName}</p>
+                <p class="text modal-text modal-date">${new Date(album.releaseDate).getFullYear()}</p>
+                <p class="modal-link"><a href="${album.artistViewUrl}">Link in Itunes</a></p>
             </div>
         </div>
+        <div class="modal-item-background"></div>
     `,
     render: function ($container, album) {
-        console.log('llego hasta aqui');
+        console.log(album);
         const html = this.template(album)
         const $modal = $(html)
 
