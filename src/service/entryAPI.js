@@ -1,5 +1,6 @@
 import { API_BASE_URL } from './config.js'
 import { printObjects, printCountries } from '../renders/render.js'
+import { openArtistModal } from '../listeners/openModals.js';
 
 let currentObjects = {
     musicTrack:[],
@@ -14,7 +15,11 @@ function getById(param) {
         mode:'cors',
         crossDomain: true,
         success: function (data,status,xhr) {
-            console.log(data);
+            console.log(data.results);
+            const objetOrigin = {
+                musicArtist: data.results
+            }
+            openArtistModal(0, objetOrigin)
         },
         error: function (jqXhr, textStatus, errorMessage) {
         }
