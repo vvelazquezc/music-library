@@ -1,6 +1,7 @@
 import { search, getCountries } from './service/entryAPI.js';
 import { searchListeners, songsListener, artistListener, albumListener, videoListener } from './listeners/listeners.js'
 import { getFavoritesFromLocalStorage } from './service/favorites.js'
+import { favoriteListener } from './listeners/favoriteListeners.js'
 
 $(document).ready(function(){
     getCountries();
@@ -10,4 +11,5 @@ $(document).ready(function(){
     artistListener();
     albumListener();
     videoListener();
+    favoriteListener();
 })
