@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "b4e6e3e5-d7c4-4ef8-a809-439eabfb9181",
+		"name": "Music Library",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://itunes.apple.com/search?entity=musicTrack&term=Eminem&media=music&country=us&limit=10&explicit=no",
+					"protocol": "https",
+					"host": [
+						"itunes",
+						"apple",
+						"com"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "entity",
+							"value": "musicTrack"
+						},
+						{
+							"key": "term",
+							"value": "Eminem"
+						},
+						{
+							"key": "media",
+							"value": "music"
+						},
+						{
+							"key": "country",
+							"value": "us"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "explicit",
+							"value": "no"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get artist by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://itunes.apple.com/lookup?id=111051",
+					"protocol": "https",
+					"host": [
+						"itunes",
+						"apple",
+						"com"
+					],
+					"path": [
+						"lookup"
+					],
+					"query": [
+						{
+							"key": "uo",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "111051"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get artist + albums by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://itunes.apple.com/lookup?id=909253&entity=album",
+					"protocol": "https",
+					"host": [
+						"itunes",
+						"apple",
+						"com"
+					],
+					"path": [
+						"lookup"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "909253"
+						},
+						{
+							"key": "entity",
+							"value": "album"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get countries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.liferay.com/api/jsonws/country/get-countries/",
+					"protocol": "https",
+					"host": [
+						"www",
+						"liferay",
+						"com"
+					],
+					"path": [
+						"api",
+						"jsonws",
+						"country",
+						"get-countries",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "look up album by upc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://itunes.apple.com/lookup?upc=720642462928",
+					"protocol": "https",
+					"host": [
+						"itunes",
+						"apple",
+						"com"
+					],
+					"path": [
+						"lookup"
+					],
+					"query": [
+						{
+							"key": "upc",
+							"value": "720642462928"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
