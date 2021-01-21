@@ -106,7 +106,9 @@ function artistListener() {
 }
 function albumListener() {
   $("#albumList").on("click", function (event) {
-    if ($(event.target).parent().hasClass("album")) {
+    if ($(event.target).hasClass("fav-button")){
+      addRemoveFromFavorites(event.target, currentObjects)
+    }else if ($(event.target).parent().hasClass("album")) {
       const value = $(event.target).parent().val()
       openAlbumModal(value, currentObjects)
     } else if ($(event.target).parent().parent().hasClass("album")) {
@@ -115,9 +117,7 @@ function albumListener() {
     } else if ($(event.target).hasClass("album")) {
       const value = $(event.target).val()
       openAlbumModal(value, currentObjects)
-    } else if ($(event.target).hasClass("fav-button")){
-      addRemoveFromFavorites(event.target, currentObjects)
-    }
+    } 
   })
 }
 
