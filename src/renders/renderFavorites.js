@@ -43,7 +43,7 @@ function printSongFavorites(song){
     if(favorites.musicTrack[song.trackId]!=null){
         starType='fas';
     }
-    const $song = ` <article class="song" style="background: url('${song.artworkUrl100}')no-repeat; background-size: cover;" >
+    const $song = ` <article class="song" style="background: url('${song.artworkUrl100}')no-repeat; background-size: cover; background-position: center;" >
     <div class="background grid-song">
         <div class="item-cover">
             <button id="${song.trackId}" value="${song.previewUrl}" class="fas fa-play clickable"></button>
@@ -77,7 +77,7 @@ function printAlbumFavorites(album){
     if(favorites.album[album.collectionId]!=null){
         starType='fas';
     }
-    const $album = ` <button class="album clickable" value='${album.collectionId}' style="background: url('${album.artworkUrl100}')no-repeat; background-size: cover;">
+    const $album = ` <button class="album clickable" value='${album.collectionId}' style="background: url('${album.artworkUrl100}')no-repeat; background-size: cover; background-position: center;">
     <div class="background">
         <h3>${album.collectionName}</h3>
         <p class="text">${album.artistName}</p>
@@ -95,7 +95,7 @@ function printVideoFavorites(video){
     if(favorites.musicVideo[video.trackId]!=null){
         starType='fas';
     }
-    const $video = `<button class="video clickable" value='${video.trackId}' style="background: url('${video.artworkUrl100}')no-repeat; background-size: cover;">
+    const $video = `<button class="video clickable" value='${video.trackId}' style="background: url('${video.artworkUrl100}')no-repeat; background-size: cover; background-position: center;">
     <div class="background">
         <h3>${video.trackName}</h3>
         <p class="text">${video.artistName}</p>

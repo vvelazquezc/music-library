@@ -72,6 +72,60 @@
         overflow: hidden;
     }
     
+
+
+
+    .album, .video{
+        width:31%;
+        margin: 1%;
+    }
+    .album>.background, .video>.background{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height:27vh;
+    }
+    .album p, .video p{
+        max-width: 90%;
+        overflow: hidden;
+        text-overflow: clip;
+        max-height: 50%;
+    }
+    .artist{
+        width:48%;
+        margin: 0.75%;
+    }
+    @media (max-width: 1200px) {
+
+        .favorites .song {
+            width: 48%;
+        }
+        .favorites .album, .favorite .video{
+            width:48%;
+            margin: 1%;
+        }
+        .favorites .artist{
+            width:98%;
+        }
+    
+    }
+
+    @media (max-width: 800px) {
+
+        .favorites .song {
+            width: 98%;
+            height:25vh;
+        }
+        .favorites  .album, .favorites  .video{
+            width:98%;
+            margin: 1%;
+        }
+    
+    }
+
+    
 }
+
+
 
 

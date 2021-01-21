@@ -30,8 +30,10 @@ function searchListeners() {
   $("#explicit").on("click", function () {
     if (explicit === "yes") {
       explicit = "no";
+      $(this). removeClass('active');
     } else {
       explicit = "yes";
+      $(this). addClass('active');
     }
     pauseSongMain();
     searchIfInput();
@@ -58,12 +60,14 @@ function showFavorites(){
   $('#closeFavoritesButon').on('click', hideFavorites);
   printFavorites();
   favoriteListener();
+  pauseSongMain();
   
 }
 
 function hideFavorites(){
   $('#favorites').addClass('hide');
   $('#closeFavoritesButon').off('click', hideFavorites);
+  pauseSongMain();
   removeFavoriteListener();
 }
 
@@ -89,10 +93,9 @@ function songsListener() {
 
 function artistListener() {
   $("#artistsLists").on("click", function (event) {
-    console.log(event.target);
     if ($(event.target).hasClass("fav-button")){
       addRemoveFromFavorites(event.target, currentObjects)
-    }else if ($(event.target).parent().hasClass("artist")) {
+    } else if ($(event.target).parent().hasClass("artist")) {
       const value = $(event.target).parent().val()
       openArtistModal(value, currentObjects)
     } else if ($(event.target).hasClass("artist")) {
@@ -103,28 +106,34 @@ function artistListener() {
 }
 function albumListener() {
   $("#albumList").on("click", function (event) {
-    if ($(event.target).parent().hasClass("album")) {
+    if ($(event.target).hasClass("fav-button")){
+      addRemoveFromFavorites(event.target, currentObjects)
+    }else if ($(event.target).parent().hasClass("album")) {
       const value = $(event.target).parent().val()
+      openAlbumModal(value, currentObjects)
+    } else if ($(event.target).parent().parent().hasClass("album")) {
+      const value = $(event.target).parent().parent().val()
       openAlbumModal(value, currentObjects)
     } else if ($(event.target).hasClass("album")) {
       const value = $(event.target).val()
       openAlbumModal(value, currentObjects)
-    } else if ($(event.target).hasClass("fav-button")){
-      addRemoveFromFavorites(event.target, currentObjects)
-    }
+    } 
   })
 }
 
 function videoListener() {
   $("#videoList").on("click", function (event) {
-    if ($(event.target).parent().hasClass("video")) {
+    if ($(event.target).hasClass("fav-button")){
+      addRemoveFromFavorites(event.target, currentObjects)
+    } else if ($(event.target).parent().hasClass("video")) {
       const value = $(event.target).parent().val()
       openVideoModal(value, currentObjects)
     } else if ($(event.target).hasClass("video")) {
       const value = $(event.target).val()
       openVideoModal(value, currentObjects)
-    } else if ($(event.target).hasClass("fav-button")){
-      addRemoveFromFavorites(event.target, currentObjects)
+    } else if ($(event.target).parent().parent().hasClass("video")) {
+      const value = $(event.target).parent().parent().val()
+      openVideoModal(value, currentObjects)
     }
   })
 }
@@ -163,9 +172,6 @@ function getId(target, object){
       id=object[type][position].trackId;
       break;
     case 'musicArtist':
-      console.log(object);
-      console.log(type);
-      console.log(position);
       id=object[type][position].artistId;
       break;
     case 'album':
