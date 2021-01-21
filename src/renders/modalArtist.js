@@ -19,7 +19,6 @@ export const artistModal = {
     <div class="modal-item-background"></div>
     `,
     render: function ($container, artist) {
-        console.log(artist);
         const html = this.template(artist)
         const $modal = $(html)
 

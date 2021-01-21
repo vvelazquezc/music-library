@@ -24,8 +24,6 @@ export const videoModal = {
         </div>
     `,
     render: function ($container, video) {
-
-        console.log(video);
         const html = this.template(video)
         const $modal = $(html)
 
@@ -41,7 +39,6 @@ export const videoModal = {
         })
         $videotModal.on('click', (e) => {
             const idArtist = $(e.target).data('index')
-            console.log(idArtist);
             getById(idArtist)
             $modal.remove()
         })

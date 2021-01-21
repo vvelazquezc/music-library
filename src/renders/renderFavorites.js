@@ -29,7 +29,6 @@ function printFavoriteAlbums(){
       });
 }
 function printFavoriteVideos(){
-    console.log(favorites.musicVideo)
     $('#favoritesVideos').text('');
     $.each( favorites.musicVideo, function( key, video ) {
         printVideoFavorites(video);
