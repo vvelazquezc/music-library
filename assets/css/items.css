@@ -125,7 +125,8 @@
 .fa-pause:hover, .fa-pause:focus,
 .fa-star:hover, .fa-star:focus,
 .title-song:hover, .title-song:focus,
-.title-artist:hover, .title-artist:focus{
+.title-artist:hover, .title-artist:focus,
+.fa-times-circle:hover, .fa-times-circle:focus{
     outline:none;
     color:  #52cffe;
     border-color: #52cffe;
