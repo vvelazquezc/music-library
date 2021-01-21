@@ -123,7 +123,9 @@ function albumListener() {
 
 function videoListener() {
   $("#videoList").on("click", function (event) {
-    if ($(event.target).parent().hasClass("video")) {
+    if ($(event.target).hasClass("fav-button")){
+      addRemoveFromFavorites(event.target, currentObjects)
+    } else if ($(event.target).parent().hasClass("video")) {
       const value = $(event.target).parent().val()
       openVideoModal(value, currentObjects)
     } else if ($(event.target).hasClass("video")) {
@@ -132,8 +134,6 @@ function videoListener() {
     } else if ($(event.target).parent().parent().hasClass("video")) {
       const value = $(event.target).parent().parent().val()
       openVideoModal(value, currentObjects)
-    }else if ($(event.target).hasClass("fav-button")){
-      addRemoveFromFavorites(event.target, currentObjects)
     }
   })
 }
